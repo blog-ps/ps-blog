@@ -36,7 +36,6 @@ export default [
       ],
       'no-unused-vars': 'warn',
       'no-console': 'warn',
-      'no-undef': 'warn',
     },
   },
 ];
