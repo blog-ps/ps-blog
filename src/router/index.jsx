@@ -1,4 +1,4 @@
-import { Blog, Home, Project, Register } from './pages';
+import { Blog, Home, Project, Register, NotFound } from './pages';
 
 export default [
   {
@@ -16,5 +16,9 @@ export default [
   {
     path: '/register',
     element: <Register />,
+  },
+  {
+    path: '*',
+    element: <NotFound />,
   },
 ];

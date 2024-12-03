@@ -11,10 +11,10 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { useDarkMode, useModeTheme } from '@/provider/theme-provider';
+import { NavLink } from 'react-router';
 import styled from 'styled-components';
 import Switch from './Switch';
 import { Separator } from './ui/separator';
-import { NavLink } from 'react-router';
 
 const links = [
   {
