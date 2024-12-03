@@ -17,7 +17,6 @@ const theme = {
     fontColor: '#ffffff',
   },
 };
-
 const ThemeModelProviderContext = createContext(initialState);
 
 function ThemeModelProvider({
