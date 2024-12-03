@@ -1,33 +1,30 @@
+import routers from '@/router';
+import { Suspense } from 'react';
+import { useRoutes } from 'react-router';
 import styled from 'styled-components';
-import Switch from './components/switch';
-import { useModeTheme } from './providers/theme-provider';
-import { Dock, DockIcon } from './components/ui/dock';
+import Loading from './components/Loading';
+import TollBar from './components/TollBar';
+import { useModeTheme } from './provider/theme-provider';
 
 const App = () => {
   const theme = useModeTheme();
+  const elements = useRoutes(routers);
   return (
     <Wrapper $theme={theme}>
-      <Docks direction="middle">
-        <DockIcon>
-          <Switch />
-        </DockIcon>
-      </Docks>
+      <Suspense fallback={<Loading />}>
+        {elements}
+        <TollBar />
+      </Suspense>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  position: relative;
   height: 100vh;
   background-color: ${({ $theme }) => $theme.background};
-  color: ${({ $theme }) => $theme.fontColor};
-  transition: background-color 0.5s, color 0.5s;
-`;
-
-const Docks = styled(Dock)`
-  position: absolute;
-  bottom: 24px;
-  left: 50%;
-  transform: translateX(-50%);
+  color: ${({ $theme }) => $theme.color};
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 export default App;

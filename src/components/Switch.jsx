@@ -1,8 +1,8 @@
-import darkIcon from '@/assets/dark.svg';
-import lightIcon from '@/assets/light.svg';
+import darkIcon from '@/assets/svg/dark.svg';
+import lightIcon from '@/assets/svg/light.svg';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useDarkMode } from '../providers/theme-provider';
+import { useDarkMode } from '../provider/theme-provider';
 
 const callAll =
   (...fns) =>
@@ -49,6 +49,7 @@ const SwitchContent = styled.div`
   img {
     width: 24px;
     height: 24px;
+    filter: none !important;
   }
 `;
 
