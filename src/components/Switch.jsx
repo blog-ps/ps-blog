@@ -1,19 +1,33 @@
 import darkIcon from '@/assets/dark.svg';
 import lightIcon from '@/assets/light.svg';
-import useDarkMode from '@/hooks/useDarkMode';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { useDarkMode } from '../providers/theme-provider';
 
 const callAll =
   (...fns) =>
   (...args) =>
     fns.forEach((fn) => fn && fn(...args));
 
-const Switch = ({ onClick }) => {
-  const { theme, toggleTheme } = useDarkMode();
-  const isDark = theme === 'dark';
+const Magnitude = {
+  small: 24,
+  medium: 32,
+  large: 64,
+};
+
+const Switch = ({ onClick = () => {}, size = 'medium' }) => {
+  const { model, setModel } = useDarkMode();
+  const isDark = model === 'dark';
+  const toggleTheme = () => {
+    setModel(isDark ? 'light' : 'dark');
+  };
 
   return (
-    <SwitchContent onClick={callAll(toggleTheme, onClick)} $isDark={isDark}>
+    <SwitchContent
+      onClick={callAll(toggleTheme, onClick)}
+      $isDark={isDark}
+      $size={Magnitude[size]}
+    >
       {isDark && <img src={darkIcon} alt="dark" />}
       {!isDark && <img src={lightIcon} alt="light" />}
     </SwitchContent>
@@ -24,8 +38,9 @@ const SwitchContent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: ${({ $size }) => $size}px;
+  height: ${({ $size }) => $size}px;
+  padding: 2px;
   border-radius: 50%;
   cursor: pointer;
   border: 1px solid ${({ $isDark }) => ($isDark ? '#86c3db' : '#fbbf24')};
@@ -36,5 +51,10 @@ const SwitchContent = styled.div`
     height: 24px;
   }
 `;
+
+Switch.propTypes = {
+  onClick: PropTypes.func,
+  size: PropTypes.oneOf(['small', 'medium', 'large']),
+};
 
 export default Switch;
