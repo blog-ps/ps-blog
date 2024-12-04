@@ -9,14 +9,14 @@ const Background = () => {
   return (
     <Wrapper>
       {model === 'dark' && (
-        <div className="sphere">
-          <Sphere />
-        </div>
-      )}
-      {model === 'dark' && (
-        <div className="piolet">
-          <Piolet />
-        </div>
+        <>
+          <div className="sphere">
+            <Sphere />
+          </div>
+          <div className="piolet">
+            <Piolet />
+          </div>
+        </>
       )}
 
       {model === 'light' && (
@@ -29,21 +29,18 @@ const Background = () => {
 };
 
 const Wrapper = styled.div`
-  .sphere {
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  .piolet {
-    position: absolute;
-    top: 0;
-    right: 0;
-  }
+  position: relative;
+  .sphere,
   .wave {
     position: absolute;
     top: 0;
     left: 0;
-    overflow: hidden;
+  }
+
+  .piolet {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 `;
 

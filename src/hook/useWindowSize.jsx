@@ -1,6 +1,12 @@
 import { useState, useEffect } from 'react';
 
-const useWindowSize = (initialWidth, initialHeight) => {
+/**
+ *
+ * @param {Number} initialWidth 初始宽度
+ * @param {Number} initialHeight 初始高度
+ * @returns {width: Number, height: Number} 返回当前窗口的宽高
+ */
+const useWindowSize = (initialWidth, initialHeight = 800) => {
   const [size, setSize] = useState({
     width: initialWidth,
     height: initialHeight,
