@@ -1,11 +1,11 @@
 import Piolet from '@/pages/Home/decorate/piolet';
 import Sphere from '@/pages/Home/decorate/sphere';
-import { useDarkMode } from '@/provider/theme-provider';
+import { useThemeMode } from '@/provider/theme-provider';
 import styled from 'styled-components';
 import Wave from './decorate/wave';
 
 const Background = () => {
-  const { model } = useDarkMode();
+  const { model } = useThemeMode();
   return (
     <Wrapper>
       {model === 'dark' && (
