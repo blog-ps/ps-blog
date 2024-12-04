@@ -10,7 +10,6 @@ const initialState = {
 
 const theme = {
   light: {
-    // background: '#f4f2ec',
     background1: '#a7d8e8 ',
     background2: '#c6a5b3',
     background:
