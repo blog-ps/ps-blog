@@ -22,9 +22,8 @@ const App = () => {
 const Wrapper = styled.div`
   position: relative;
   height: 100vh;
-  background-color: ${({ $theme }) => $theme.background};
+  background: ${({ $theme }) => $theme.background};
   color: ${({ $theme }) => $theme.color};
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 `;
 
 export default App;

@@ -45,7 +45,6 @@ const SwitchContent = styled.div`
   cursor: pointer;
   border: 1px solid ${({ $isDark }) => ($isDark ? '#86c3db' : '#fbbf24')};
   background-color: ${({ $isDark }) => ($isDark ? '#86c3db36' : '#fbbe2436')};
-  transition: all 0.3s ease-in-out;
   img {
     width: 24px;
     height: 24px;

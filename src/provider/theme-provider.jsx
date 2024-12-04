@@ -9,11 +9,12 @@ const initialState = {
 
 const theme = {
   light: {
-    background: '#f4f2ec',
+    background:
+      'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
     fontColor: '#0b1926',
   },
   dark: {
-    background: '#11161a',
+    background: '#0F103F',
     fontColor: '#ffffff',
   },
 };

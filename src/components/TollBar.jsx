@@ -88,9 +88,9 @@ const Wrapper = styled.div`
 `;
 
 const Docks = styled(Dock)`
-  transition: all 0.3s ease-in-out;
   img {
     width: 24px;
+    transition: all 0.5s ease-in-out;
     filter: ${({ $model }) => ($model === 'dark' ? 'invert(1)' : 'none')};
 
     &:hover {
