@@ -10,7 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
-import { useDarkMode, useModeTheme } from '@/provider/theme-provider';
+import { useThemeMode, useThemeStyle } from '@/provider/theme-provider';
 import { NavLink } from 'react-router';
 import styled from 'styled-components';
 import Switch from './Switch';
@@ -35,8 +35,8 @@ const links = [
 ];
 
 const TollBar = () => {
-  const theme = useModeTheme();
-  const { model } = useDarkMode();
+  const theme = useThemeStyle();
+  const { model } = useThemeMode();
 
   return (
     <Wrapper $theme={theme}>

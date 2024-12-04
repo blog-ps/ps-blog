@@ -79,7 +79,7 @@ function ThemesProvider({ children }) {
   );
 }
 
-const useDarkMode = () => {
+const useThemeMode = () => {
   const context = useContext(ThemeModelProviderContext);
 
   if (context === undefined)
@@ -88,11 +88,11 @@ const useDarkMode = () => {
   return context;
 };
 
-const useModeTheme = () => {
-  const { model } = useDarkMode();
+const useThemeStyle = () => {
+  const { model } = useThemeMode();
   const theme = useTheme();
 
   return theme[model] || theme.light;
 };
 
-export { ThemesProvider, useDarkMode, useModeTheme };
+export { ThemesProvider, useThemeMode, useThemeStyle };

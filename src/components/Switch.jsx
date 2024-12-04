@@ -2,7 +2,7 @@ import darkIcon from '@/assets/svg/dark.svg';
 import lightIcon from '@/assets/svg/light.svg';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useDarkMode } from '../provider/theme-provider';
+import { useThemeMode } from '../provider/theme-provider';
 
 const callAll =
   (...fns) =>
@@ -16,7 +16,7 @@ const Magnitude = {
 };
 
 const Switch = ({ onClick = () => {}, size = 'medium' }) => {
-  const { model, setModel } = useDarkMode();
+  const { model, setModel } = useThemeMode();
   const isDark = model === 'dark';
   const toggleTheme = () => {
     setModel(isDark ? 'light' : 'dark');

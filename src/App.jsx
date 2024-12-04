@@ -4,13 +4,13 @@ import { useRoutes } from 'react-router';
 import styled from 'styled-components';
 import Loading from './components/Loading';
 import TollBar from './components/TollBar';
-import { useModeTheme } from './provider/theme-provider';
+import { useThemeStyle } from './provider/theme-provider';
 
 const App = () => {
-  const theme = useModeTheme();
+  const themeStyle = useThemeStyle();
   const elements = useRoutes(routers);
   return (
-    <Wrapper $theme={theme}>
+    <Wrapper $theme={themeStyle}>
       <Suspense fallback={<Loading />}>
         {elements}
         <TollBar />
