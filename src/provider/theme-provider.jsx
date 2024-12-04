@@ -1,4 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
+import { color } from 'framer-motion';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { ThemeProvider, useTheme } from 'styled-components';
 
@@ -10,11 +11,17 @@ const initialState = {
 const theme = {
   light: {
     background: '#f4f2ec',
+    background1: '#a7d8e8 ',
+    background2: '#c6a5b3',
     fontColor: '#0b1926',
+    color: '#0b1926',
   },
   dark: {
-    background: '#11161a',
+    background: '#2c343b ',
+    background1: '#4b5c68 ',
+    background2: '#7a8b9d ',
     fontColor: '#ffffff',
+    color: '#ffffff',
   },
 };
 const ThemeModelProviderContext = createContext(initialState);
