@@ -1,11 +1,16 @@
 import Banner from '../../components/banner';
+import styled from 'styled-components';
+import Background from './background';
 
 const Home = () => {
   return (
-    <div>
+    <Wrapper>
       <Banner></Banner>
-    </div>
+      <Background />
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div``;
 
 export default Home;

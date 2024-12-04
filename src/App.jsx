@@ -24,7 +24,7 @@ const App = () => {
 const Wrapper = styled.div`
   position: relative;
   height: 100vh;
-  background-color: ${({ $theme }) => $theme.background};
+  background: ${({ $theme }) => $theme.background};
   color: ${({ $theme }) => $theme.color};
   margin: 0 auto 96px;
   padding: 0 136px;
