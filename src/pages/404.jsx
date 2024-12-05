@@ -40,7 +40,7 @@ const NotFound = () => {
   return (
     <>
       <Wrapper>
-        <Lottie animationData={Animation} />
+        <Lottie animationData={Animation} loop />
       </Wrapper>
       <Back to="/">cd ../</Back>
     </>
