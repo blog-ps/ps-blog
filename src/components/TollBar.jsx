@@ -85,6 +85,7 @@ const Wrapper = styled.div`
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 `;
 
 const Docks = styled(Dock)`

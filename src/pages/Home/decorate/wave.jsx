@@ -1,11 +1,12 @@
 import useWindowSize from '@/hook/useWindowSize';
 
 const Wave = (props) => {
-  const { width } = useWindowSize(1440, 800);
+  const [windowWidth] = useWindowSize();
+
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width={width}
+      width={windowWidth}
       height={800}
       fill="none"
       {...props}
