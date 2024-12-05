@@ -9,6 +9,8 @@ const initialState = {
 
 const theme = {
   light: {
+    themeColor1: '#a7d8e8 ',
+    themeColor2: '#c6a5b3',
     background:
       'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
     fontColor: '#0b1926',
@@ -16,6 +18,8 @@ const theme = {
   dark: {
     background: '#0F103F',
     fontColor: '#ffffff',
+    themeColor1: '#4b5c68 ',
+    themeColor2: '#7a8b9d ',
   },
 };
 const ThemeModelProviderContext = createContext(initialState);
