@@ -5,17 +5,22 @@ import Contents from './Content';
 const Home = () => {
   return (
     <Wrapper>
-      <BackGround>
-        <Contents />
-      </BackGround>
+      <Content>
+        <BackGround>
+          <Contents />
+        </BackGround>
+      </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  position: relative;
+`;
+
+const Content = styled.div`
   padding-top: 200px;
   padding-left: 100px;
-  position: relative;
 
   @media (max-width: 768px) {
     padding-top: 60px;
