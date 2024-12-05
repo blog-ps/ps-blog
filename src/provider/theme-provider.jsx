@@ -1,5 +1,4 @@
 /* eslint-disable react-refresh/only-export-components */
-import { color } from 'framer-motion';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { ThemeProvider, useTheme } from 'styled-components';
 
@@ -15,15 +14,12 @@ const theme = {
     background:
       'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
     fontColor: '#0b1926',
-    color: '#0b1926',
   },
   dark: {
-    background: '#2c343b ',
-    background1: '#4b5c68 ',
-    background2: '#7a8b9d ',
-    // background: '#0F103F',
+    background: '#0F103F',
     fontColor: '#ffffff',
-    color: '#ffffff',
+    themeColor1: '#4b5c68 ',
+    themeColor2: '#7a8b9d ',
   },
 };
 const ThemeModelProviderContext = createContext(initialState);

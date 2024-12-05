@@ -41,15 +41,15 @@ const TollBar = () => {
   return (
     <Wrapper $theme={theme}>
       <TooltipProvider>
-        <Docks direction="middle" distance={60} $model={model}>
+        <Docks direction="middle" distance={0} $model={model}>
           {links.map((link) => {
             return (
               <DockIcon key={link.url}>
                 <Tooltip>
                   <TooltipTrigger asChild>
-                    <NavLink to={link.url}>
+                    <MyNavLink to={link.url} $model={model}>
                       <img src={link.icon} alt={link.title} />
-                    </NavLink>
+                    </MyNavLink>
                   </TooltipTrigger>
                   <TooltipContent>
                     <p>{link.title}</p>
@@ -62,9 +62,9 @@ const TollBar = () => {
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
-                <NavLink to="/register">
+                <MyNavLink to="/register" $model={model}>
                   <img src={user_unlogin} alt="user" />
-                </NavLink>
+                </MyNavLink>
               </TooltipTrigger>
               <TooltipContent>
                 <p>用户</p>
@@ -85,6 +85,7 @@ const Wrapper = styled.div`
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 `;
 
 const Docks = styled(Dock)`
@@ -92,10 +93,16 @@ const Docks = styled(Dock)`
     width: 24px;
     transition: all 0.5s ease-in-out;
     filter: ${({ $model }) => ($model === 'dark' ? 'invert(1)' : 'none')};
+  }
+`;
 
-    &:hover {
-      filter: ${({ $model }) => ($model === 'dark' ? 'invert(0.8)' : 'none')};
-    }
+const MyNavLink = styled(NavLink)`
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: ${({ $model }) =>
+      $model === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};
   }
 `;
 

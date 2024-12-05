@@ -11,27 +11,17 @@ const App = () => {
   const elements = useRoutes(routers);
   return (
     <Wrapper $theme={themeStyle}>
-      <Inner>
-        <Suspense fallback={<Loading />}>
-          {elements}
-          <TollBar />
-        </Suspense>
-      </Inner>
+      <Suspense fallback={<Loading />}>
+        {elements}
+        <TollBar />
+      </Suspense>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  position: relative;
-  height: 100vh;
   background: ${({ $theme }) => $theme.background};
   color: ${({ $theme }) => $theme.color};
-  margin: 0 auto 96px;
-  padding: 0 136px;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
-`;
-const Inner = styled.div`
-  width: 100%;
-  padding: 0 200px;
+  min-height: 100vh;
 `;
 export default App;

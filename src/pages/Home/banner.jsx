@@ -17,8 +17,8 @@ const Circle = styled.div`
 `;
 const imgStyle = {
   opacity: 0.99,
-  minWidth: '800px', // 固定宽度
-  minHeight: '900px', // 固定高度
+  maxWidth: '800px', // 固定宽度
+  maxHeight: '900px', // 固定高度
   width: '100%', // 如果容器小于 656px，图片会缩放
   height: '100%', // 如果容器小于 900px，图片会缩放
 };
