@@ -121,6 +121,11 @@ const BlurFadeLeft = styled(BlurFade)`
   position: absolute;
   top: 0;
   left: 0;
+
+  @media (max-width: 768px) {
+    left: auto;
+    right: 0;
+  }
 `;
 
 const BlurFadeRight = styled(BlurFade)`

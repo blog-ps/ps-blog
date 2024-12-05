@@ -88,6 +88,7 @@ const FadeTextH2 = styled(FadeText)`
 const Content = styled.section`
   transition: all 0.5s ease;
   display: inline-block;
+  max-width: 400px;
   ${({ $model }) => $model === 'dark' && 'transform: translateX(160px);'}
 
   @media (max-width: 768px) {
@@ -107,7 +108,7 @@ const Content = styled.section`
 
   @media (max-width: 768px) {
     .description {
-      padding: 0 20px;
+      transform: translateY(20px);
       gap: 0px;
     }
 
@@ -121,20 +122,6 @@ const Content = styled.section`
 
     ${'.blurFade'} {
       display: none;
-    }
-  }
-
-  @media (min-width: 1200px) {
-    .description {
-      transform: translateX(200px);
-    }
-
-    ${FadeTextP}, ${MyWordRotate} {
-      font-size: 80px;
-    }
-
-    ${FadeTextH2} {
-      font-size: 20px;
     }
   }
 `;
