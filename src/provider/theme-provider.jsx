@@ -9,17 +9,41 @@ const initialState = {
 
 const theme = {
   light: {
-    background1: '#a7d8e8 ',
-    background2: '#c6a5b3',
+    color: '#0b1926',
+    themeColor1: '#a7d8e8 ',
+    themeColor2: '#c6a5b3',
     background:
       'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
     fontColor: '#0b1926',
+    cardBackground: `linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.8),
+      rgba(255, 255, 255, 0.5)
+    ),
+    linear-gradient(
+      135deg,
+      rgba(255, 0, 150, 0.2),
+      rgba(0, 200, 255, 0.2),
+      rgba(255, 255, 0, 0.2)
+    )`,
   },
   dark: {
+    color: '#ffffff',
     background: '#0F103F',
     fontColor: '#ffffff',
     themeColor1: '#4b5c68 ',
     themeColor2: '#7a8b9d ',
+    cardBackground: `linear-gradient(
+    135deg,
+    rgba(70, 80, 90, 0.8),
+    rgba(100, 110, 120, 0.6)
+  ),
+  linear-gradient(
+    135deg,
+    rgba(150, 200, 255, 0.5) 0%,
+    rgba(100, 150, 200, 0.5) 50%,
+    rgba(180, 180, 230, 0.5) 100%
+  )`,
   },
 };
 const ThemeModelProviderContext = createContext(initialState);

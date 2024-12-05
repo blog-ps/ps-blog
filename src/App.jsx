@@ -10,11 +10,15 @@ const App = () => {
   const themeStyle = useThemeStyle();
   const elements = useRoutes(routers);
   return (
-    <Wrapper $theme={themeStyle}>
-      <Suspense fallback={<Loading />}>
-        {elements}
-        <TollBar />
-      </Suspense>
+    <Wrapper $theme={themeStyle} id="wrapper">
+      <Content>
+        <Inner>
+          <Suspense fallback={<Loading />}>
+            {elements}
+            <TollBar />
+          </Suspense>
+        </Inner>
+      </Content>
     </Wrapper>
   );
 };
@@ -22,6 +26,15 @@ const App = () => {
 const Wrapper = styled.div`
   background: ${({ $theme }) => $theme.background};
   color: ${({ $theme }) => $theme.color};
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 居中对齐 */
+  overflow: hidden;
   min-height: 100vh;
+`;
+const Inner = styled.div`
+  width: 100%;
 `;
 export default App;

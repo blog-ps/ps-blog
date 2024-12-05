@@ -4,34 +4,22 @@ import {
   SmartCardItem,
   SmartCardItems,
   SmartCardTitle,
+  SmartAbstract,
+  SmartCardFooter,
 } from '@/components/smartCard';
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card';
 
 const Blog = () => {
   return (
     <div>
-      <Card>
-        <CardHeader>111</CardHeader>
-        <CardTitle>222</CardTitle>
-        <CardDescription>333</CardDescription>
-        <CardContent>444</CardContent>
-        <CardFooter>555</CardFooter>
-      </Card>
       <SmartCard>
         <SmartCardImg>图片</SmartCardImg>
         <SmartCardItems>
-          <SmartCardTitle>标题</SmartCardTitle>
-          <SmartCardItem>111</SmartCardItem>
-          <SmartCardItem>222</SmartCardItem>
-          <SmartCardItem>333</SmartCardItem>
+          <SmartCardTitle>我是标题</SmartCardTitle>
+          <SmartAbstract>我是简介</SmartAbstract>
+          <SmartCardItem>我是列表1</SmartCardItem>
+          <SmartCardItem>我是列表2</SmartCardItem>
         </SmartCardItems>
+        <SmartCardFooter>我是页脚</SmartCardFooter>
       </SmartCard>
     </div>
   );
