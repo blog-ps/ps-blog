@@ -2,12 +2,14 @@ import lightgirl from '@/assets/png/light.png';
 import BlurFade from '@/components/ui/blur-fade';
 import Piolet from '@/pages/Home/decorate/piolet';
 import Sphere from '@/pages/Home/decorate/sphere';
+import { useThemeMode } from '@/provider/theme-provider';
 import styled from 'styled-components';
 import Wave from './decorate/wave';
 
-const BackGround = ({ model, children }) => {
+const BackGround = ({ children }) => {
+  const { model } = useThemeMode();
   return (
-    <>
+    <Wrapper>
       {model === 'dark' ? (
         <>
           <BlurFadeLeft delay={0.25} inView>
@@ -34,9 +36,21 @@ const BackGround = ({ model, children }) => {
           </BlurFade>
         </Imgs>
       )}
-    </>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  .wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+`;
 
 const Imgs = styled.section`
   .light-girl {
@@ -44,6 +58,27 @@ const Imgs = styled.section`
     top: 0;
     right: 0;
     max-width: 640px;
+
+    @media (min-width: 1024px) {
+      max-width: 680px;
+      right: 1rem;
+    }
+
+    @media (min-width: 1440px) {
+      max-width: 680px;
+      right: 3rem;
+    }
+
+    @media (min-width: 1920px) {
+      max-width: 800px;
+      right: 6rem;
+    }
+
+    /* 移动端 */
+    @media (max-width: 768px) {
+      width: 250px;
+      top: 40vh;
+    }
   }
 
   .smallball {
@@ -55,6 +90,11 @@ const Imgs = styled.section`
     position: absolute;
     top: 152px;
     right: 0;
+
+    @media (max-width: 768px) {
+      width: 100px;
+      height: 100px;
+    }
   }
 
   .bigball {
@@ -67,6 +107,13 @@ const Imgs = styled.section`
     position: absolute;
     top: 255px;
     right: 180px;
+
+    @media (max-width: 768px) {
+      width: 150px;
+      height: 150px;
+      top: 180px;
+      right: 100px;
+    }
   }
 `;
 
