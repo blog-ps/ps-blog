@@ -1,14 +1,11 @@
 import styled from 'styled-components';
-import BackGround from './BackGround';
-import Contents from './Content';
+import Head from './sections/Head';
 
 const Home = () => {
   return (
     <Wrapper>
       <Content>
-        <BackGround>
-          <Contents />
-        </BackGround>
+        <Head />
       </Content>
     </Wrapper>
   );
@@ -16,16 +13,9 @@ const Home = () => {
 
 const Wrapper = styled.div`
   position: relative;
+  overflow: hidden;
 `;
 
-const Content = styled.div`
-  padding-top: 200px;
-  padding-left: 100px;
-
-  @media (max-width: 768px) {
-    padding-top: 60px;
-    padding-left: 10px;
-  }
-`;
+const Content = styled.div``;
 
 export default Home;
