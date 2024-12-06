@@ -91,7 +91,7 @@ const Wrapper = styled.div`
 const Docks = styled(Dock)`
   img {
     width: 24px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s linear;
     filter: ${({ $model }) => ($model === 'dark' ? 'invert(1)' : 'none')};
   }
 `;
@@ -99,7 +99,7 @@ const Docks = styled(Dock)`
 const MyNavLink = styled(NavLink)`
   padding: 8px;
   border-radius: 50%;
-  transition: all 0.3s ease-in-out;
+  transition: all 0.3s linear;
   &:hover {
     background: ${({ $model }) =>
       $model === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'};

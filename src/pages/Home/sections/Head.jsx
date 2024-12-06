@@ -4,11 +4,11 @@ import AnimatedShinyText from '@/components/ui/animated-shiny-text';
 import BlurFade from '@/components/ui/blur-fade';
 import { FadeText } from '@/components/ui/fade-text';
 import { cn } from '@/lib/utils';
-import Piolet from '@/pages/Home/decorate/piolet';
-import Sphere from '@/pages/Home/decorate/sphere';
+import Piolet from '@/components/decorate/piolet';
+import Sphere from '@/components/decorate/sphere';
 import { useThemeMode } from '@/provider/theme-provider';
 import { ArrowRightIcon } from 'lucide-react';
-import Wave from '@/pages/Home/decorate/wave';
+import Wave from '@/components/decorate/wave';
 import {
   BlurFadeLeft,
   BlurFadeRight,

@@ -207,12 +207,12 @@ const BlurFadeRight = styled(BlurFade)`
 `;
 
 export {
-  Wrapper,
-  Content,
-  Imgs,
   BlurFadeLeft,
   BlurFadeRight,
-  FadeTextP,
-  MyWordRotate,
+  Content,
   FadeTextH2,
+  FadeTextP,
+  Imgs,
+  MyWordRotate,
+  Wrapper,
 };
