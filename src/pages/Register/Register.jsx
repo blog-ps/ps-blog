@@ -1,3 +1,4 @@
+import { getCaptchaCode } from '@/api/requrst';
 import email from '@/assets/svg/email.svg';
 import password from '@/assets/svg/password.svg';
 import { InputOTP, InputOTPGroup } from '@/components/ui/input-otp';
@@ -14,7 +15,6 @@ import {
   MyInputOTPSlot,
   Wrapper,
 } from './Register.styled';
-import { getCaptchaCode } from '@/api/requrst';
 
 const COOLDOWN = 10;
 const STATUS = {
@@ -51,10 +51,6 @@ const Register = () => {
   const [userInfo, updateUserInfo] = useUserInfo();
   const { toast } = useToast();
 
-  const reset = () => {
-    setStatus(STATUS.IDLE);
-  };
-
   const getCaptcha = useDebouncedFn(async () => {
     setStatus(STATUS.LOADING);
 
@@ -81,11 +77,12 @@ const Register = () => {
       status === STATUS.COOLDOWN ||
       Number(localStorage.getItem('cooldown')) !== COOLDOWN
     ) {
+      setStatus(STATUS.COOLDOWN);
       const interval = setInterval(() => {
         const prev = Number(localStorage.getItem('cooldown'));
         setCooldown(() => {
           if (prev === 0) {
-            reset();
+            setStatus(STATUS.IDLE);
             localStorage.setItem('cooldown', COOLDOWN);
             clearInterval(interval);
             return COOLDOWN;
@@ -94,7 +91,6 @@ const Register = () => {
           return prev - 1;
         });
       }, 1000);
-      return () => clearInterval(interval);
     }
   }, [cooldown, status]);
 
@@ -141,8 +137,7 @@ const Register = () => {
             <Captcha>
               <MyButton
                 disabled={
-                  status === STATUS.LOADING ||
-                  Number(localStorage.getItem('cooldown')) !== COOLDOWN
+                  status === STATUS.LOADING || status === STATUS.COOLDOWN
                 }
                 type="button"
                 onClick={getCaptcha}
