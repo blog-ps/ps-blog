@@ -126,4 +126,5 @@ const Grids = (props) => (
     </defs>
   </svg>
 );
+
 export default Grids;

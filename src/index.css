@@ -28,6 +28,10 @@
   box-sizing: border-box;
 }
 
+input:focus {
+  outline: none;
+}
+
 img {
   pointer-events: none;
   user-select: none;
