@@ -1,4 +1,4 @@
-import useWindowSize from '@/hook/useWindowSize';
+import useWindowSize from '@/hooks/useWindowSize';
 
 const Wave = (props) => {
   const [windowWidth] = useWindowSize();

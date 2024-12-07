@@ -1,15 +1,16 @@
 import register from '@/assets/jpg/register-background.jpeg';
-import Wave from '@/components/decorate/wave';
-import BlurFade from '@/components/ui/blur-fade';
-import styled from 'styled-components';
-import Grids from './grids';
-import { useThemeMode } from '@/provider/theme-provider';
 import wave1 from '@/assets/svg/waves/wave1.svg';
 import wave2 from '@/assets/svg/waves/wave2.svg';
 import wave3 from '@/assets/svg/waves/wave3.svg';
 import wave4 from '@/assets/svg/waves/wave4.svg';
+import Wave from '@/components/decorate/wave';
+import BlurFade from '@/components/ui/blur-fade';
+import { useThemeMode } from '@/provider/theme-provider';
+import styled from 'styled-components';
+import Grids from './grids';
+import Register from './Register';
 
-const Register = () => {
+const Index = () => {
   const { model } = useThemeMode();
 
   return (
@@ -36,6 +37,7 @@ const Register = () => {
       )}
       <Header />
       {model === 'light' ? <Img /> : null}
+      <Register />
     </Wrapper>
   );
 };
@@ -130,4 +132,4 @@ const Waves = styled.section`
   }
 `;
 
-export default Register;
+export default Index;

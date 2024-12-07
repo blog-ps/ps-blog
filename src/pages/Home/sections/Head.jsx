@@ -1,14 +1,14 @@
 import lightgirl from '@/assets/png/light.png';
 import suqares from '@/assets/svg/squares.svg';
+import Piolet from '@/components/decorate/piolet';
+import Sphere from '@/components/decorate/sphere';
+import Wave from '@/components/decorate/wave';
 import AnimatedShinyText from '@/components/ui/animated-shiny-text';
 import BlurFade from '@/components/ui/blur-fade';
 import { FadeText } from '@/components/ui/fade-text';
 import { cn } from '@/lib/utils';
-import Piolet from '@/components/decorate/piolet';
-import Sphere from '@/components/decorate/sphere';
 import { useThemeMode } from '@/provider/theme-provider';
 import { ArrowRightIcon } from 'lucide-react';
-import Wave from '@/components/decorate/wave';
 import {
   BlurFadeLeft,
   BlurFadeRight,
@@ -30,7 +30,7 @@ const Contents = () => {
           <BlurFadeLeft delay={0.25} inView>
             <Sphere />
           </BlurFadeLeft>
-          <BlurFadeRight delay={0.5} inView>
+          <BlurFadeRight delay={0.25} inView>
             <Piolet />
           </BlurFadeRight>
         </>
