@@ -6,7 +6,7 @@ const useDebouncedFn = (fn, ms = 500) => {
   const debouncedFn = (...args) => {
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
-      fn(...args);
+      fn.apply(this, args);
     }, ms);
   };
 
