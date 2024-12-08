@@ -6,6 +6,7 @@ import Wave from '@/components/decorate/wave';
 import AnimatedShinyText from '@/components/ui/animated-shiny-text';
 import BlurFade from '@/components/ui/blur-fade';
 import { FadeText } from '@/components/ui/fade-text';
+import Meteors from '@/components/ui/meteors';
 import { cn } from '@/lib/utils';
 import { useThemeMode } from '@/provider/theme-provider';
 import { ArrowRightIcon } from 'lucide-react';
@@ -33,6 +34,7 @@ const Contents = () => {
           <BlurFadeRight delay={0.25} inView>
             <Piolet />
           </BlurFadeRight>
+          <Meteors number={20} />
         </>
       ) : (
         <div className="wave">

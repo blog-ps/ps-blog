@@ -7,8 +7,7 @@ import Wave from '@/components/decorate/wave';
 import BlurFade from '@/components/ui/blur-fade';
 import { useThemeMode } from '@/provider/theme-provider';
 import styled from 'styled-components';
-import Grids from './grids';
-import Register from './Register';
+import LogForm from './LogForm';
 
 const Index = () => {
   const { model } = useThemeMode();
@@ -35,9 +34,8 @@ const Index = () => {
           </BlurFade>
         </Waves>
       )}
-      <Header />
       {model === 'light' ? <Img /> : null}
-      <Register />
+      <LogForm />
     </Wrapper>
   );
 };
@@ -58,14 +56,6 @@ const Wrapper = styled.div`
     left: 100px;
     z-index: 1;
   }
-`;
-
-const Header = styled(Grids)`
-  position: absolute;
-  top: 0;
-  left: 0;
-  max-width: 100vw;
-  max-height: 100vh;
 `;
 
 const Img = styled.div`

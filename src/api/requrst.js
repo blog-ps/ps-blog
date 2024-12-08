@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { useNavigate } from 'react-router';
 
 const instance = axios.create({
   baseURL: '/api',
-  timeout: 10000,
+  timeout: 5000,
 });
 
 instance.interceptors.request.use(
@@ -22,21 +21,13 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
-    const navigate = useNavigate();
-    if (error.response?.status === 401) {
+    if (error.data.success === false) {
       localStorage.removeItem('token');
-      navigate('/login');
+      localStorage.removeItem('userInfo');
+      window.location.href = '/register';
     }
     return Promise.reject(error);
   }
 );
 
-export async function getCaptchaCode(email) {
-  const res = await instance.get('/user/front/code', {
-    params: {
-      email: email,
-    },
-  });
-
-  return res;
-}
+export default instance;
