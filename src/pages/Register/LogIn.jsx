@@ -32,6 +32,11 @@ const Login = ({ createInputField }) => {
     e.preventDefault();
     let res;
 
+    if (!userInfo.email || !userInfo.password) {
+      toast({ description: '请填写完整信息', variant: 'destructive' });
+      return;
+    }
+
     if (loginType === 'opt') {
       res = await signinWithOtp({
         email: userInfo.email,
