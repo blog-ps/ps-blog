@@ -32,7 +32,6 @@ const showUp = keyframes`
 `;
 
 const Wrapper = styled.div`
-  z-index: 100;
   position: absolute;
   top: 50%;
   left: 50%;
