@@ -117,14 +117,14 @@ const ProductsList = ({ children }) => {
             cy="320.191"
             r="133.191"
             stroke="currentColor"
-            stroke-width="20"
+            strokeWidth="20"
           ></circle>
           <circle
             cx="806.809"
             cy="320.191"
             r="133.191"
             stroke="currentColor"
-            stroke-width="20"
+            strokeWidth="20"
           ></circle>
           <circle
             cx="695.019"
@@ -150,8 +150,8 @@ const ProductsList = ({ children }) => {
             fill="#FF1E1E"
           ></rect>
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M745.643 288.24C815.368 344.185 854.539 432.623 854.539 511.741H614.938V454.652C614.938 433.113 597.477 415.652 575.938 415.652H388.37C366.831 415.652 349.37 433.113 349.37 454.652V511.741L110.949 511.741C110.949 432.623 150.12 344.185 219.845 288.24C289.57 232.295 384.138 200.865 482.744 200.865C581.35 200.865 675.918 232.295 745.643 288.24Z"
             fill="currentColor"
           ></path>

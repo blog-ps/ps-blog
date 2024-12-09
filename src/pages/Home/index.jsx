@@ -1,26 +1,21 @@
 import styled from 'styled-components';
-import BackGround from './BackGround';
-import Contents from './Content';
+import Head from './sections/Head';
 
 const Home = () => {
   return (
     <Wrapper>
-      <BackGround>
-        <Contents />
-      </BackGround>
+      <Content>
+        <Head />
+      </Content>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  padding-top: 200px;
-  padding-left: 100px;
   position: relative;
-
-  @media (max-width: 768px) {
-    padding-top: 60px;
-    padding-left: 10px;
-  }
+  overflow: hidden;
 `;
+
+const Content = styled.div``;
 
 export default Home;
