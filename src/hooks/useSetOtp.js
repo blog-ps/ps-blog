@@ -1,4 +1,4 @@
-import { getCaptchaCode } from '@/api/user';
+import useUserStore from '@/store/user';
 import { useEffect, useState } from 'react';
 import { toast } from './use-toast';
 import useDebouncedFn from './useDebouncedFn';
@@ -21,6 +21,7 @@ const useSetOtp = (key = 'default-cooldown') => {
     const initialCooldown = Number(localStorage.getItem(key)) || 0;
     return initialCooldown > 0 ? STATUS.COOLDOWN : STATUS.IDLE;
   });
+  const { fetchCaptchaCode } = useUserStore();
 
   useEffect(() => {
     let interval;
@@ -70,7 +71,7 @@ const useSetOtp = (key = 'default-cooldown') => {
     }
 
     try {
-      const res = await getCaptchaCode(email);
+      const res = await fetchCaptchaCode(email);
 
       if (res.status === 200) {
         setCoolDown(COOLDOWN);

@@ -1,9 +1,10 @@
-import { register } from '@/api/user';
 import emailIcon from '@/assets/svg/email.svg';
 import passwordIcon from '@/assets/svg/password.svg';
+import InputWithIcon from '@/components/InputWithIcon';
 import { InputOTP, InputOTPGroup } from '@/components/ui/input-otp';
 import { useToast } from '@/hooks/use-toast';
 import useSetOtp from '@/hooks/useSetOtp';
+import useUserStore from '@/store/user';
 import { Loader2 } from 'lucide-react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -17,12 +18,12 @@ const useUserInfo = () => {
   return [userInfo, updateUserInfo];
 };
 
-const SignUp = ({ createInputField, setIsSignUp }) => {
+const SignUp = ({ setIsSignUp }) => {
   const [otp, setOtp] = useState('');
-
   const [userInfo, updateUserInfo] = useUserInfo();
   const { toast } = useToast();
   const { cooldown, status, STATUS, getCaptcha } = useSetOtp('signup-cooldown');
+  const { register } = useUserStore();
 
   const captchaTxt = (status, cooldown) => {
     if (status === STATUS.LOADING) return '正在获取中...';
@@ -42,51 +43,28 @@ const SignUp = ({ createInputField, setIsSignUp }) => {
       password: userInfo.password,
       code: otp,
     };
-    const res = await register(info);
-    if (res.status !== 200) {
-      toast({
-        title: '注册失败',
-        description: `状态码:${res.status}`,
-        variant: 'destructive',
-      });
-      return;
-    }
-
-    const { data } = res;
-    if (!data.success) {
-      toast({
-        title: '注册失败',
-        description: data.errorMsg,
-        variant: 'destructive',
-      });
-    } else {
-      toast({ description: '注册成功' });
-      setIsSignUp(false);
-    }
+    await register(info, () => setIsSignUp(false));
   };
 
   return (
     <Inputs>
-      {createInputField(
-        'email',
-        '请输入邮箱',
-        userInfo.email,
-        (v) => updateUserInfo('email', v),
-        'email-input'
-      )}
-      <div className="email">
-        <img src={emailIcon} alt="email" />
-      </div>
-      {createInputField(
-        'password',
-        '请输入密码',
-        userInfo.password,
-        (v) => updateUserInfo('password', v),
-        'password-input'
-      )}
-      <div className="password">
-        <img src={passwordIcon} alt="password" />
-      </div>
+      <InputWithIcon
+        value={userInfo.email}
+        onChange={(v) => updateUserInfo('email', v)}
+        placeholder="请输入邮箱"
+        src={emailIcon}
+        alt="email"
+      />
+
+      <InputWithIcon
+        type="password"
+        value={userInfo.password}
+        onChange={(v) => updateUserInfo('password', v)}
+        placeholder="请输入密码"
+        src={passwordIcon}
+        alt="password"
+      />
+
       <Captcha>
         <MyButton
           disabled={status === STATUS.LOADING || status === STATUS.COOLDOWN}
