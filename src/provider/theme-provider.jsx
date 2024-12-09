@@ -12,6 +12,8 @@ const theme = {
     color: '#0b1926',
     themeColor1: '#a7d8e8 ',
     themeColor2: '#c6a5b3',
+    bottomColor1: '#70a2e1',
+    bottomColor2: '#ffbaba',
     background:
       'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
     fontColor: '#0b1926',
@@ -33,6 +35,8 @@ const theme = {
     fontColor: '#ffffff',
     themeColor1: '#4b5c68 ',
     themeColor2: '#7a8b9d ',
+    bottomColor1: '#1c3f6e',
+    bottomColor2: '#7D2A2A',
     cardBackground: `linear-gradient(
     135deg,
     rgba(70, 80, 90, 0.8),
