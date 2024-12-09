@@ -8,9 +8,11 @@ import BlurFade from '@/components/ui/blur-fade';
 import { useThemeMode } from '@/provider/theme-provider';
 import styled from 'styled-components';
 import LogForm from './LogForm';
+import Dashboard from './dashboard';
 
 const Index = () => {
   const { model } = useThemeMode();
+  const isLogIn = JSON.parse(localStorage.getItem('userInfo')) !== null;
 
   return (
     <Wrapper $model={model}>
@@ -35,7 +37,7 @@ const Index = () => {
         </Waves>
       )}
       {model === 'light' ? <Img /> : null}
-      <LogForm />
+      {isLogIn ? <Dashboard /> : <LogForm />}
     </Wrapper>
   );
 };

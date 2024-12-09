@@ -1,7 +1,7 @@
 import blog from '@/assets/svg/blog.svg';
 import home from '@/assets/svg/home.svg';
 import porject from '@/assets/svg/project.svg';
-// import user from '@/assets/svg/user.svg';
+import user from '@/assets/svg/user.svg';
 import user_unlogin from '@/assets/svg/user-unlogin.svg';
 import { Dock, DockIcon } from '@/components/ui/dock';
 import {
@@ -15,6 +15,7 @@ import { NavLink } from 'react-router';
 import styled from 'styled-components';
 import Switch from './Switch';
 import { Separator } from './ui/separator';
+import useUserStore from '@/store/user';
 
 const links = [
   {
@@ -37,6 +38,9 @@ const links = [
 const TollBar = () => {
   const theme = useThemeStyle();
   const { model } = useThemeMode();
+  const { user: userInfo } = useUserStore();
+
+  const isLogin = userInfo !== null;
 
   return (
     <Wrapper $theme={theme}>
@@ -63,7 +67,11 @@ const TollBar = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <MyNavLink to="/register" $model={model}>
-                  <img src={user_unlogin} alt="user" />
+                  {isLogin ? (
+                    <img src={userInfo.imgUrl || user} />
+                  ) : (
+                    <img src={user_unlogin} alt="user" />
+                  )}
                 </MyNavLink>
               </TooltipTrigger>
               <TooltipContent>
