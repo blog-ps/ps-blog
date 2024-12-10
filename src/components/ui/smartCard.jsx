@@ -5,8 +5,8 @@ const SmartCard = ({ children }) => {
   return <SmartCardWrapper $theme={theme}>{children}</SmartCardWrapper>;
 };
 const SmartCardWrapper = styled.div`
-  width: 16vw;
-  height: 45vh;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
