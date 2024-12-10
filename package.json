@@ -32,6 +32,7 @@
     "styled-components": "^6.1.13",
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
+    "tweakpane": "^4.0.5",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
