@@ -1,0 +1,66 @@
+.hover-effect {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  color: #333; /* 调整文本颜色 */
+  font-weight: bold; /* 加粗字体 */
+  transition: color 0.3s ease; /* 文本颜色变化的过渡效果 */
+}
+
+.hover-effect::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -4px; /* 调整线的位置 */
+  width: 0;
+  height: 2px; /* 调整线的粗细 */
+  background-color: #a7d8e8; /* 调整线的颜色 */
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.hover-effect:hover {
+  color: #ffb6c1; /* 悬停时改变文本颜色 */
+}
+
+.hover-effect:hover::after {
+  width: 100%;
+  left: 0;
+}
+/* 基本样式 */
+.my-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 出现时的动画 */
+.slide-in {
+  animation: slideInDown 0.5s forwards; /* 0.5秒时间可以根据需要调整 */
+}
+
+/* 消失时的动画 */
+.slide-out {
+  animation: slideOutUp 0.5s forwards;
+}
+/* 定义关键帧动画 */
+@keyframes slideOutUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

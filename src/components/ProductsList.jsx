@@ -36,7 +36,6 @@ const ProductsList = ({ items }) => {
       return update();
     document.startViewTransition(() => update());
   };
-  const hasAnchorSupport = CSS.supports('anchor-name: --anchor');
   const populateCache = () => {
     itemPosCache.current.length = 0;
 
@@ -292,7 +291,6 @@ const ProductsList = ({ items }) => {
 };
 const SmartCardWrapper = styled.div`
   /* @import 'normalize.css' layer(normalize); */
-  width: 100%;
   @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
 
   @layer debug {
@@ -529,7 +527,7 @@ const SmartCardWrapper = styled.div`
   }
   h2 {
     font-size: 0.5em;
-    margin-bottom: 1em;
+    /* margin-bottom: 1em; */
   }
   .container {
     width: 100%;

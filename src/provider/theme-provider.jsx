@@ -14,6 +14,9 @@ const theme = {
     themeColor2: '#c6a5b3',
     bottomColor1: '#70a2e1',
     bottomColor2: '#ffbaba',
+    navigationColor: '#b5e8e8',
+    navigationBorderColor: '#007BFF',
+    navigationHoverColor: '#003d80',
     background:
       'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
     fontColor: '#0b1926',
@@ -37,6 +40,9 @@ const theme = {
     themeColor2: '#7a8b9d ',
     bottomColor1: '#2954A3',
     bottomColor2: '#C961DE',
+    navigationColor: '#AEEEEE',
+    navigationBorderColor: '#007BFF',
+    navigationHoverColor: '#003d80',
     cardBackground: `linear-gradient(
     135deg,
     rgba(70, 80, 90, 0.8),

@@ -3,9 +3,9 @@ import BlurFade from '@/components/ui/blur-fade';
 
 import { ProductsList } from '@/components/ProductsList';
 
-const ProductList = (theme) => {
+const ProductList = () => {
   return (
-    <Wrapper id="wrapper">
+    <Wrapper>
       <ProductsList
         items={[
           {
@@ -34,7 +34,6 @@ const BlurFadeLeft = styled(BlurFade)`
   left: 0;
 `;
 const Wrapper = styled.div`
-  width: 100vw;
   height: 100vh;
 `;
 export default ProductList;
