@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
 const InputWithIcon = (props) => {
@@ -12,17 +14,50 @@ const InputWithIcon = (props) => {
     alt = `img-${nanoid()}`,
     width = '320px',
     height = '40px',
+    className,
+    disabled = false,
+    inputType = 'input',
   } = props;
 
+  useEffect(() => {
+    if (disabled) return;
+
+    if (value && !onChange) {
+      console.error(
+        'You have passed a value prop but not an onChange handler to InputWithIcon component\n Please pass an onChange handler to handle the value prop'
+      );
+    }
+
+    if (value === null && onChange) {
+      console.error(
+        'You have passed an onChange handler but not a value prop to InputWithIcon component\n Please pass a value prop to handle the onChange handler'
+      );
+    }
+  }, [disabled, onChange, value]);
+
   return (
-    <Wrapper>
-      <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        style={{ width, height }}
-      />
+    <Wrapper className={className} $area={inputType === 'textarea'}>
+      {inputType === 'input' ? (
+        <input
+          className="inputs"
+          type={type}
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange || (() => {})}
+          style={{ width, height }}
+          disabled={disabled}
+        />
+      ) : (
+        <textarea
+          className="inputs area"
+          placeholder={placeholder}
+          value={value}
+          onChange={onChange || (() => {})}
+          style={{ width, height }}
+          disabled={disabled}
+        />
+      )}
+
       <div className="img-wrapper">
         <img src={src} alt={alt} />
       </div>
@@ -33,12 +68,14 @@ const InputWithIcon = (props) => {
 InputWithIcon.propTypes = {
   type: PropTypes.string,
   placeholder: PropTypes.string,
-  value: PropTypes.any.isRequired,
-  onChange: PropTypes.func.isRequired,
+  value: PropTypes.any,
+  onChange: PropTypes.func,
   src: PropTypes.any.isRequired,
   alt: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
+  disabled: PropTypes.bool,
+  inputType: PropTypes.oneOf(['input', 'textarea']),
 };
 
 export default InputWithIcon;
@@ -54,15 +91,19 @@ const Wrapper = styled.div`
 
   .img-wrapper {
     position: absolute;
-    left: 4px;
-    top: 4px;
+    left: ${({ $area }) => ($area ? '6px' : '4px')};
+    top: ${({ $area }) => ($area ? '12px' : '4px')};
 
     padding: 6px;
     background: rgba(255, 255, 255, 0.2);
     border-radius: 50%;
   }
 
-  input {
+  .area {
+    min-height: 58px;
+  }
+
+  .inputs {
     display: flex;
     width: 320px;
     height: 40px;
@@ -103,6 +144,11 @@ const Wrapper = styled.div`
         rgba(24, 32, 79, 0.25) 100%
       );
       padding-left: 40px;
+    }
+
+    &:disabled {
+      color: rgba(255, 255, 255, 0.4);
+      cursor: not-allowed;
     }
   }
 `;
