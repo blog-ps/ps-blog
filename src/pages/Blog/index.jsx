@@ -1,40 +1,23 @@
-import {
-  SmartCard,
-  SmartCardImg,
-  SmartCardItem,
-  SmartCardItems,
-  SmartCardTitle,
-} from '@/components/smartCard';
-import {
-  Card,
-  CardHeader,
-  CardFooter,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from '@/components/ui/card';
+import styled from 'styled-components';
+import { useThemeMode, useThemeStyle } from '@/provider/theme-provider';
+import CardList from './CardList';
+import ProductList from './productList';
+import './index.css';
+import Navigation from './Navigation';
 
 const Blog = () => {
+  const theme = useThemeMode();
+  const themeStyle = useThemeStyle();
   return (
-    <div>
-      <Card>
-        <CardHeader>111</CardHeader>
-        <CardTitle>222</CardTitle>
-        <CardDescription>333</CardDescription>
-        <CardContent>444</CardContent>
-        <CardFooter>555</CardFooter>
-      </Card>
-      <SmartCard>
-        <SmartCardImg>图片</SmartCardImg>
-        <SmartCardItems>
-          <SmartCardTitle>标题</SmartCardTitle>
-          <SmartCardItem>111</SmartCardItem>
-          <SmartCardItem>222</SmartCardItem>
-          <SmartCardItem>333</SmartCardItem>
-        </SmartCardItems>
-      </SmartCard>
-    </div>
+    <Wrapper id="wrapper">
+      <Navigation themeStyle={themeStyle}></Navigation>
+      <CardList theme={theme}></CardList>
+      <ProductList></ProductList>
+    </Wrapper>
   );
 };
-
+const Wrapper = styled.div`
+  position: relative;
+  height: 100vh;
+`;
 export default Blog;

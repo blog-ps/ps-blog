@@ -1,0 +1,11 @@
+/* @import 'normalize.css' layer(normalize); */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+
+:root {
+  --font-size-min: 16;
+  --font-size-max: 20;
+  --font-ratio-min: 1.2;
+  --font-ratio-max: 1.33;
+  --font-width-min: 375;
+  --font-width-max: 1500;
+}

@@ -42,6 +42,12 @@ const App = () => {
 const Wrapper = styled.div`
   background: ${({ $theme }) => $theme.background};
   color: ${({ $theme }) => $theme.color};
+`;
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 居中对齐 */
+  overflow: hidden;
   min-height: 100vh;
 `;
 
