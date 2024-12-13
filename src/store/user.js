@@ -43,7 +43,11 @@ const useUserStore = create((set) => {
   return {
     user: userInfoInStorage || null,
     setUser: (config) =>
-      set((state) => ({ user: { ...state.user, ...config } })),
+      set((state) => {
+        const newState = { user: { ...state.user, ...config } };
+        localStorage.setItem('userInfo', JSON.stringify(newState.user));
+        return newState;
+      }),
     LogOut: () => {
       set({ user: null });
       localStorage.removeItem('userInfo');

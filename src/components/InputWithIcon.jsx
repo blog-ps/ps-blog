@@ -1,10 +1,10 @@
 /* eslint-disable no-console */
 import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
+import { forwardRef, useEffect } from 'react';
 import styled from 'styled-components';
 
-const InputWithIcon = (props) => {
+const InputWithIcon = forwardRef((props, ref) => {
   const {
     type = 'text',
     placeholder = '',
@@ -36,7 +36,7 @@ const InputWithIcon = (props) => {
   }, [disabled, onChange, value]);
 
   return (
-    <Wrapper className={className} $area={inputType === 'textarea'}>
+    <Wrapper className={className} $area={inputType === 'textarea'} ref={ref}>
       {inputType === 'input' ? (
         <input
           className="inputs"
@@ -63,7 +63,7 @@ const InputWithIcon = (props) => {
       </div>
     </Wrapper>
   );
-};
+});
 
 InputWithIcon.propTypes = {
   type: PropTypes.string,
@@ -76,7 +76,9 @@ InputWithIcon.propTypes = {
   height: PropTypes.string,
   disabled: PropTypes.bool,
   inputType: PropTypes.oneOf(['input', 'textarea']),
+  className: PropTypes.string,
 };
+InputWithIcon.displayName = 'InputWithIcon';
 
 export default InputWithIcon;
 

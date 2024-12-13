@@ -1,30 +1,45 @@
-import userIcon from '@/assets/svg/user.svg';
-import email from '@/assets/svg/logo/email.svg';
 import desc from '@/assets/svg/logo/desc.svg';
+import email from '@/assets/svg/logo/email.svg';
+import userIcon from '@/assets/svg/user.svg';
 import InputWithIcon from '@/components/InputWithIcon';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
+import useGenerateFileInput from '@/hooks/useGenerateFileInput';
 import useUserStore from '@/store/user';
 import { AvatarFallback } from '@radix-ui/react-avatar';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 
 const Dashboard = () => {
+  const avatarRef = useRef(null);
   const { LogOut, user } = useUserStore();
   const [userInfo, setUserInfo] = useState(() => user);
+  const { fileInput, run, setFormData } = useGenerateFileInput(avatarRef);
+
+  const changeAvatar = () => {
+    fileInput.click();
+  };
+
+  const saveSettings = async (formData) => {};
 
   return (
     <Wrapper>
       <Content>
-        <Main>
+        <Form>
           <p>Edit Profile</p>
           <h1>Manage your DesignCode profile and account</h1>
 
           <AvatarGroup>
             <Avatar className="avator-img">
-              <AvatarImage src={userInfo.img || userIcon} alt="avator" />
+              <AvatarImage
+                src={userInfo.img || userIcon}
+                alt="avator"
+                ref={avatarRef}
+              />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
-            <div className="change">Change avatar</div>
+            <button type="file" className="change" onClick={changeAvatar}>
+              Change avatar
+            </button>
           </AvatarGroup>
 
           <Settings>
@@ -40,7 +55,11 @@ const Dashboard = () => {
                 type="text"
                 value={userInfo.nickName}
                 onChange={(e) =>
-                  setUserInfo({ ...userInfo, nickName: e.target.value })
+                  setUserInfo((prev) => {
+                    const newInfo = { ...prev, nickName: e.target.value };
+                    setFormData('user', newInfo);
+                    return newInfo;
+                  })
                 }
                 src={userIcon}
                 alt="nickName"
@@ -49,14 +68,23 @@ const Dashboard = () => {
                 inputType="textarea"
                 value={userInfo.description || ''}
                 onChange={(e) =>
-                  setUserInfo({ ...userInfo, description: e.target.value })
+                  setUserInfo((prev) => {
+                    const newInfo = { ...prev, description: e.target.value };
+                    setFormData('user', newInfo);
+                    return newInfo;
+                  })
                 }
                 src={desc}
               />
-              <button>Save settings</button>
+              <Buttons>
+                <button onClick={() => run(saveSettings)}>Save settings</button>
+                <button className="logout" onClick={LogOut}>
+                  Log out
+                </button>
+              </Buttons>
             </div>
           </Settings>
-        </Main>
+        </Form>
       </Content>
     </Wrapper>
   );
@@ -104,7 +132,7 @@ const Content = styled.section`
   padding-left: 30px;
 `;
 
-const Main = styled.div`
+const Form = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -177,18 +205,38 @@ const Settings = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
+  }
+`;
 
-    button {
-      padding: 16px;
-      border-radius: 30px;
-      background: linear-gradient(91deg, #2fb8ff 0%, #9eecd9 100%);
-      box-shadow: 0px 20px 40px 0px rgba(147, 231, 221, 0.3);
-      color: #0e435c;
-      font-family: 'SF Pro Text';
-      font-size: 17px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
+const Buttons = styled.div`
+  width: 100%;
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-around;
+
+  button {
+    padding: 12px;
+    border-radius: 30px;
+    background: linear-gradient(91deg, #2fb8ff 0%, #9eecd9 100%);
+    box-shadow: 0px 20px 40px 0px rgba(147, 231, 221, 0.3);
+    color: #0e435c;
+    font-family: 'SF Pro Text';
+    font-size: 17px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    transition: all 0.3s ease;
+
+    &:hover {
+      transform: translateY(-2px);
     }
+  }
+
+  .logout {
+    background: linear-gradient(180deg, #ff5252 0%, #ff72b6 100%);
+    color: white;
+    text-align: center;
   }
 `;
