@@ -11,7 +11,7 @@ import styled, { keyframes } from 'styled-components';
 
 const Dashboard = () => {
   const avatarRef = useRef(null);
-  const { LogOut, user } = useUserStore();
+  const { LogOut, user, updateUserSettings } = useUserStore();
   const [userInfo, setUserInfo] = useState(() => user);
   const { fileInput, run, setFormData } = useGenerateFileInput(avatarRef);
 
@@ -19,7 +19,9 @@ const Dashboard = () => {
     fileInput.click();
   };
 
-  const saveSettings = async (formData) => {};
+  const saveSettings = async (formData) => {
+    await updateUserSettings(formData);
+  };
 
   return (
     <Wrapper>
@@ -70,7 +72,7 @@ const Dashboard = () => {
                 onChange={(e) =>
                   setUserInfo((prev) => {
                     const newInfo = { ...prev, description: e.target.value };
-                    setFormData('user', newInfo);
+                    setFormData('user', JSON.stringify(newInfo));
                     return newInfo;
                   })
                 }

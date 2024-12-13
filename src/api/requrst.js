@@ -21,11 +21,12 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.data.success === false) {
-      localStorage.removeItem('token');
-      localStorage.removeItem('userInfo');
-      window.location.href = '/register';
-    }
+    // console.log(error);
+    // if (error.data.success === false) {
+    //   localStorage.removeItem('token');
+    //   localStorage.removeItem('userInfo');
+    //   window.location.href = '/register';
+    // }
     return Promise.reject(error);
   }
 );

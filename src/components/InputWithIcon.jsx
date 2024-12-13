@@ -34,30 +34,19 @@ const InputWithIcon = forwardRef((props, ref) => {
       );
     }
   }, [disabled, onChange, value]);
+  const InputComponent = inputType === 'input' ? 'input' : 'textarea';
 
   return (
     <Wrapper className={className} $area={inputType === 'textarea'} ref={ref}>
-      {inputType === 'input' ? (
-        <input
-          className="inputs"
-          type={type}
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange || (() => {})}
-          style={{ width, height }}
-          disabled={disabled}
-        />
-      ) : (
-        <textarea
-          className="inputs area"
-          placeholder={placeholder}
-          value={value}
-          onChange={onChange || (() => {})}
-          style={{ width, height }}
-          disabled={disabled}
-        />
-      )}
-
+      <InputComponent
+        className={`inputs ${inputType === 'textarea' ? 'area' : ''}`}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange || (() => {})}
+        style={{ width, height }}
+        disabled={disabled}
+      />
       <div className="img-wrapper">
         <img src={src} alt={alt} />
       </div>
@@ -103,6 +92,8 @@ const Wrapper = styled.div`
 
   .area {
     min-height: 58px;
+    max-height: 120px;
+    scrollbar-width: none;
   }
 
   .inputs {
@@ -114,7 +105,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: flex-start;
     gap: 4px;
-    transition: all 0.3s ease;
+    transition: background 0.3s, box-shadow 0.3s;
 
     border-radius: 30px;
     border: 0.5px solid rgba(255, 255, 255, 0.3);
