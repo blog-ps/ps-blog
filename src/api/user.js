@@ -29,5 +29,5 @@ export function signinWithPassword(userInfo) {
 }
 
 export function saveUserSettings(formData) {
-  return apiRequest('post', '/upload/front/img', formData, true);
+  return apiRequest('post', '/user/front/update', formData, true);
 }

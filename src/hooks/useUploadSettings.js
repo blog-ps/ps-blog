@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react';
 import { toast } from './use-toast';
 
-function useGenerateFileInput(avatarRef) {
+function useUploadSettings(avatarRef, userInfo) {
   const fileInput = document.createElement('input');
   fileInput.type = 'file';
   fileInput.accept = 'image/*';
   fileInput.multiple = false;
 
-  const [readerToUpload, setReaderToUpload] = useState(() => new FormData());
+  const [readerToUpload, setReaderToUpload] = useState(() => {
+    const formData = new FormData();
+    formData.set('user', JSON.stringify(userInfo));
+    return formData;
+  });
 
   useEffect(() => {
     const readerToShow = new FileReader();
@@ -17,7 +21,7 @@ function useGenerateFileInput(avatarRef) {
       if (!file) return;
 
       readerToShow.readAsDataURL(file);
-      appendToFormData('imgFile', file);
+      setFormData('imgFile', file);
 
       readerToShow.onload = async (e) => {
         const img = e.target.result;
@@ -64,10 +68,10 @@ function useGenerateFileInput(avatarRef) {
     });
   }
 
-  async function run(uploadFunc) {
+  function run(uploadFunc) {
     if (Array.from(readerToUpload.entries()).length === 0) return;
 
-    await uploadFunc(readerToUpload);
+    uploadFunc(readerToUpload);
   }
 
   return {
@@ -81,4 +85,4 @@ function useGenerateFileInput(avatarRef) {
   };
 }
 
-export default useGenerateFileInput;
+export default useUploadSettings;
