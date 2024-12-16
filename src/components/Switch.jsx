@@ -1,5 +1,5 @@
-import darkIcon from '@/assets/svg/dark.svg';
-import lightIcon from '@/assets/svg/light.svg';
+import darkIcon from '@/assets/svg/logo/dark.svg';
+import lightIcon from '@/assets/svg/logo/light.svg';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { useThemeMode } from '../provider/theme-provider';

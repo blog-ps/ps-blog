@@ -46,7 +46,6 @@ const Wrapper = styled.div`
   position: relative;
   width: 100vw;
   height: 100vh;
-
   background: ${({ $model }) =>
     $model === 'dark' && 'linear-gradient(180deg, #343563 0%, #4926AD 100%)'};
 
@@ -56,7 +55,7 @@ const Wrapper = styled.div`
     position: absolute;
     bottom: 0;
     left: 100px;
-    z-index: 1;
+    z-index: -1;
   }
 `;
 

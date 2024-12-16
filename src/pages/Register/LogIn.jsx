@@ -1,5 +1,5 @@
-import emailIcon from '@/assets/svg/email.svg';
-import passwordIcon from '@/assets/svg/password.svg';
+import emailIcon from '@/assets/svg/logo/email.svg';
+import passwordIcon from '@/assets/svg/logo/password.svg';
 import InputWithIcon from '@/components/InputWithIcon';
 import { Toggle } from '@/components/ui/toggle';
 import { toast } from '@/hooks/use-toast';
@@ -55,7 +55,7 @@ const Login = () => {
         type="email"
         placeholder="请输入邮箱"
         value={userInfo.email}
-        onChange={(v) => updateUserInfo('email', v)}
+        onChange={(e) => updateUserInfo('email', e.target.value)}
         src={emailIcon}
         alt="email"
       />
@@ -64,7 +64,7 @@ const Login = () => {
         type="password"
         placeholder={`请输入${loginType === 'otp' ? '验证码' : '密码'}`}
         value={userInfo.password}
-        onChange={(v) => updateUserInfo('password', v)}
+        onChange={(e) => updateUserInfo('password', e.target.value)}
         src={passwordIcon}
         alt="password"
       />

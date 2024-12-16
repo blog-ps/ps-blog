@@ -16,7 +16,7 @@ const useScrollPosition = (
   const handleScroll = useCallback(() => {
     customHandleScroll(scrollY.current, item.scrollY);
     scrollY.current = item.scrollY;
-  }, [customHandleScroll]);
+  }, [customHandleScroll, item.scrollY]);
   useEffect(() => {
     item.addEventListener('scroll', handleScroll);
 

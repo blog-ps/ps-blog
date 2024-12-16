@@ -1,5 +1,5 @@
-import emailIcon from '@/assets/svg/email.svg';
-import passwordIcon from '@/assets/svg/password.svg';
+import emailIcon from '@/assets/svg/logo/email.svg';
+import passwordIcon from '@/assets/svg/logo/password.svg';
 import InputWithIcon from '@/components/InputWithIcon';
 import { InputOTP, InputOTPGroup } from '@/components/ui/input-otp';
 import { useToast } from '@/hooks/use-toast';
@@ -50,7 +50,7 @@ const SignUp = ({ setIsSignUp }) => {
     <Inputs>
       <InputWithIcon
         value={userInfo.email}
-        onChange={(v) => updateUserInfo('email', v)}
+        onChange={(e) => updateUserInfo('email', e.target.value)}
         placeholder="请输入邮箱"
         src={emailIcon}
         alt="email"
@@ -59,7 +59,7 @@ const SignUp = ({ setIsSignUp }) => {
       <InputWithIcon
         type="password"
         value={userInfo.password}
-        onChange={(v) => updateUserInfo('password', v)}
+        onChange={(e) => updateUserInfo('password', e.target.value)}
         placeholder="请输入密码"
         src={passwordIcon}
         alt="password"
