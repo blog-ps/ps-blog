@@ -19,14 +19,15 @@ instance.interceptors.request.use(
 );
 
 instance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    if (response.data.code === 401) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userInfo');
+      window.location.href = '/register';
+    }
+    return response;
+  },
   (error) => {
-    // console.log(error);
-    // if (error.data.success === false) {
-    //   localStorage.removeItem('token');
-    //   localStorage.removeItem('userInfo');
-    //   window.location.href = '/register';
-    // }
     return Promise.reject(error);
   }
 );

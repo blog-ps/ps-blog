@@ -9,6 +9,10 @@ import { toast } from '@/hooks/use-toast';
 import { create } from 'zustand';
 
 const userInfoInStorage = JSON.parse(localStorage.getItem('userInfo'));
+const TYPE = {
+  WITH_TOKEN: 1,
+  WITHOUT_TOKEN: 0,
+};
 
 const useUserStore = create((set) => {
   const handleFailure = (text, message) => {
@@ -19,8 +23,8 @@ const useUserStore = create((set) => {
     });
   };
 
-  const handleSuccess = (text, data, cb) => {
-    if (text === '登录') {
+  const handleSuccess = (text, data, type = 0, cb) => {
+    if (type === TYPE.WITH_TOKEN) {
       set({ user: data.data });
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('userInfo', JSON.stringify(data.data));
@@ -29,24 +33,31 @@ const useUserStore = create((set) => {
     cb(data);
   };
 
-  const handleResponse = (res, text, cb = () => {}) => {
+  const handleResponse = (
+    res,
+    text,
+    type = TYPE.WITHOUT_TOKEN,
+    cb = () => {}
+  ) => {
     if (res.status !== 200) {
       handleFailure(text, `状态码: ${res.status}`);
-      return null;
+      set({ user: userInfoInStorage });
+      return;
     }
 
     const { data } = res;
     if (!data.success) {
       handleFailure(text, data.errorMsg);
-      return null;
+      set({ user: userInfoInStorage });
+      return;
     }
 
-    handleSuccess(text, data, cb);
+    handleSuccess(text, data, type, cb);
   };
 
   const performSignIn = async (userInfo, method) => {
     const res = await method(userInfo);
-    handleResponse(res, '登录', () => {
+    handleResponse(res, '登录', TYPE.WITH_TOKEN, () => {
       window.location.reload();
     });
   };
@@ -70,7 +81,7 @@ const useUserStore = create((set) => {
     },
     register: async (userInfo, cb) => {
       const res = await register(userInfo);
-      handleResponse(res, '注册', cb);
+      handleResponse(res, '注册', null, cb);
     },
     signinWithOtp: async (userInfo) => {
       await performSignIn(userInfo, signinWithOtp);
@@ -80,7 +91,7 @@ const useUserStore = create((set) => {
     },
     updateUserSettings: async (formData) => {
       const res = await saveUserSettings(formData);
-      handleResponse(res, '更新用户信息');
+      handleResponse(res, '更新用户信息', TYPE.WITH_TOKEN);
     },
   };
 });

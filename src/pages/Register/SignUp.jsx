@@ -88,7 +88,7 @@ const SignUp = ({ setIsSignUp }) => {
 };
 
 SignUp.propTypes = {
-  createInputField: PropTypes.func.isRequired,
+  setIsSignUp: PropTypes.func.isRequired,
 };
 
 export default SignUp;
