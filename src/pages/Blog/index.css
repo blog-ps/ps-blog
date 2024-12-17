@@ -28,19 +28,22 @@
 }
 /* 基本样式 */
 .my-div {
+  padding: 10px 8vw;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between; /* 可选：如果希望按钮之间有间隔 */
+  align-items: center; /* 垂直居中 */
 }
-
+.navButton {
+  flex: 1;
+}
 /* 出现时的动画 */
 .slide-in {
-  animation: slideInDown 0.5s forwards; /* 0.5秒时间可以根据需要调整 */
+  animation: slideInDown 0.3s forwards; /* 0.5秒时间可以根据需要调整 */
 }
 
 /* 消失时的动画 */
 .slide-out {
-  animation: slideOutUp 0.5s forwards;
+  animation: slideOutUp 0.3s forwards;
 }
 /* 定义关键帧动画 */
 @keyframes slideOutUp {

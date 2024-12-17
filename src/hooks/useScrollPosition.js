@@ -13,7 +13,7 @@ const useScrollPosition = (
   const handleScroll = useCallback(() => {
     customHandleScroll(scrollY.current, item.scrollY);
     scrollY.current = item.scrollY;
-  }, [customHandleScroll, item.scrollY]);
+  }, [customHandleScroll, item]);
   useEffect(() => {
     item.scrollTo(0, scrollY.current);
     item.addEventListener('scroll', handleScroll);
@@ -24,7 +24,7 @@ const useScrollPosition = (
         scrollY.current
       );
     };
-  }, []);
+  }, [handleScroll, item, scrollY, location]);
   return scrollY;
 };
 export default useScrollPosition;
