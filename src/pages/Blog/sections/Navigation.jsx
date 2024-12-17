@@ -2,11 +2,16 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import routers from '@/router';
-import { useLocation } from 'react-router';
+import { useLocation, NavLink } from 'react-router';
 import { useCallback } from 'react';
 import useScrollPosition from '@/hooks/useScrollPosition';
+import { SmartButton } from '@/components/ui/smartButton';
 
 const Navigation = ({ children, themeStyle }) => {
+  const [tag, setTag] = useState(() => {
+    const tag = window.localStorage.getItem('tag');
+    return tag ? tag : 'blog';
+  });
   const [visible, setVisible] = useState(true);
   const location = useLocation();
 
@@ -20,6 +25,9 @@ const Navigation = ({ children, themeStyle }) => {
     },
     [visible]
   );
+  const handleClick = (tag) => {
+    routers.push({ path: tag });
+  };
   useScrollPosition(location.pathname.slice(1), handleScroll);
   return (
     <Wrapper
@@ -34,7 +42,18 @@ const Navigation = ({ children, themeStyle }) => {
         $themeStyle={themeStyle}
         className={`my-div ${visible ? 'slide-in' : 'slide-out'}`}
       >
-        <h1 className="hover-effect">鼠标悬停在这里</h1>
+        <SmartButton styled="navButton" onClick={() => handleClick('blog')}>
+          博客文章
+        </SmartButton>
+        <SmartButton styled="navButton" onClick={() => handleClick('todoList')}>
+          todoList
+        </SmartButton>
+        <SmartButton
+          styled="navButton"
+          onClick={() => handleClick('photoLibrary')}
+        >
+          摄影图库
+        </SmartButton>
       </NavigationContainer>
     </Wrapper>
   );
@@ -47,11 +66,12 @@ const Wrapper = styled.div`
   height: 10vh;
   z-index: 1;
 `;
+
 const NavigationContainer = styled.div`
   backdrop-filter: blur(10px);
   position: fixed;
   top: 20px; /* 距离视口顶部0像素 */
-  left: 40px;
+  left: 50vw;
   right: 40px;
   background-color: ${({ $themeStyle }) =>
     $themeStyle.navigationColor}; /* 背景颜色 */
