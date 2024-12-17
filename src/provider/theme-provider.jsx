@@ -14,7 +14,7 @@ const theme = {
     themeColor2: '#c6a5b3',
     bottomColor1: '#57d0c6',
     bottomColor2: '#70A2E1',
-    navigationColor: '#57d0c6',
+    navigationColor: '#ffffff',
     navigationBorderColor: '#5438e4',
     navigationHoverColor: '#003d80',
     background:

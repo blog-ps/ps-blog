@@ -1,20 +1,39 @@
-import { useEffect } from 'react';
 import { useState } from 'react';
 import styled from 'styled-components';
-import routers from '@/router';
-import { useLocation, NavLink } from 'react-router';
+import { useLocation } from 'react-router';
 import { useCallback } from 'react';
 import useScrollPosition from '@/hooks/useScrollPosition';
 import { SmartButton } from '@/components/ui/smartButton';
+import { useThemeStyle } from '@/provider/theme-provider';
+import { useNavigate } from 'react-router';
+const Navigation = ({ children }) => {
+  const themeStyle = useThemeStyle();
 
-const Navigation = ({ children, themeStyle }) => {
-  const [tag, setTag] = useState(() => {
-    const tag = window.localStorage.getItem('tag');
-    return tag ? tag : 'blog';
+  const tagItem = [
+    {
+      name: '博客',
+      url: '/blog/',
+    },
+    {
+      name: '项目',
+      url: '/blog/program',
+    },
+    {
+      name: '摄影',
+      url: '/blog/photoLibrary',
+    },
+    {
+      name: 'todoList',
+      url: '/blog/todoList',
+    },
+  ];
+  const [tagName, setTagName] = useState(() => {
+    const tagName = window.localStorage.getItem('BlogTagName');
+    return tagName ? tagName : tagItem[0].name;
   });
   const [visible, setVisible] = useState(true);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const handleScroll = useCallback(
     (oldScroll, newScroll) => {
       if (oldScroll > newScroll && visible === true) {
@@ -25,9 +44,15 @@ const Navigation = ({ children, themeStyle }) => {
     },
     [visible]
   );
-  const handleClick = (tag) => {
-    routers.push({ path: tag });
+  const handleClick = (ChoosedTag) => {
+    if (tagName !== ChoosedTag.name) {
+      setTagName(ChoosedTag.name);
+      console.log('nagetive');
+
+      navigate(ChoosedTag.url);
+    }
   };
+
   useScrollPosition(location.pathname.slice(1), handleScroll);
   return (
     <Wrapper
@@ -40,20 +65,16 @@ const Navigation = ({ children, themeStyle }) => {
     >
       <NavigationContainer
         $themeStyle={themeStyle}
+        $tagIndex={tagItem.findIndex((item) => item.name === tagName) + 1}
         className={`my-div ${visible ? 'slide-in' : 'slide-out'}`}
       >
-        <SmartButton styled="navButton" onClick={() => handleClick('blog')}>
-          博客文章
-        </SmartButton>
-        <SmartButton styled="navButton" onClick={() => handleClick('todoList')}>
-          todoList
-        </SmartButton>
-        <SmartButton
-          styled="navButton"
-          onClick={() => handleClick('photoLibrary')}
-        >
-          摄影图库
-        </SmartButton>
+        {tagItem.map((item, index) => {
+          return (
+            <SmartButton key={index} onClick={() => handleClick(item)}>
+              {item.name}
+            </SmartButton>
+          );
+        })}
       </NavigationContainer>
     </Wrapper>
   );
@@ -61,13 +82,17 @@ const Navigation = ({ children, themeStyle }) => {
 const Wrapper = styled.div`
   position: fixed;
   top: 0px; /* 距离视口顶部0像素 */
-  left: 0px;
+  left: 35vw;
   right: 0px;
-  height: 10vh;
+  height: 15vh;
   z-index: 1;
+  /* pointer-events: none; */
 `;
 
 const NavigationContainer = styled.div`
+  button:nth-child(${($tagIndex) => $tagIndex}) {
+    border: 2px solid black; // 自定义边框样式
+  }
   backdrop-filter: blur(10px);
   position: fixed;
   top: 20px; /* 距离视口顶部0像素 */

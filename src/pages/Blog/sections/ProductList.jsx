@@ -22,6 +22,27 @@ const ProductList = () => {
             img2: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
             img3: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
           },
+          {
+            name: 'air jordan',
+            url: '#',
+            img1: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+            img2: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+            img3: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+          },
+          {
+            name: 'air jordan',
+            url: '#',
+            img1: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+            img2: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+            img3: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+          },
+          {
+            name: 'air jordan',
+            url: '#',
+            img1: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+            img2: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+            img3: 'https://assets.codepen.io/605876/air-force-1.jpeg?width=204&height=153&format=auto',
+          },
         ]}
       ></ProductsList>
     </Wrapper>

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 const SmartButton = ({ children, onClick, ...props }) => {
   const theme = useThemeStyle();
   return (
-    <SmartButtonWapper $theme={theme} {...props}>
-      <span onClick={onClick}>{children}</span>
+    <SmartButtonWapper onClick={onClick} $theme={theme} {...props}>
+      <span>{children}</span>
     </SmartButtonWapper>
   );
 };
@@ -34,7 +34,7 @@ const SmartButtonWapper = styled.button`
     background-color: ${({ $theme }) => $theme.bottomColor2}; /* 蓝色背景 */
     border-radius: 50%; /* 圆形背景 */
     transform: translate(-50%, -50%) scale(0); /* 初始缩放为0 */
-    transition: transform 1s ease; /* 平滑缩放过渡 */
+    transition: transform 0.8s ease; /* 平滑缩放过渡 */
     z-index: 0; /* 放在文字后面 */
   }
 

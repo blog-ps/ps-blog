@@ -20,19 +20,19 @@ export default [
     element: <Blog />,
     children: [
       {
-        path: 'myBlog',
+        path: '/blog/',
         element: <MyBlog />,
       },
       {
-        path: 'photoLibrary',
+        path: '/blog/photoLibrary',
         element: <PhotoLibrary />,
       },
       {
-        path: 'todoList',
+        path: '/blog/todoList',
         element: <TodoList />,
       },
       {
-        path: 'program',
+        path: '/blog/program',
         element: <Program />,
       },
     ],
