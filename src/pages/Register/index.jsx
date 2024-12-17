@@ -55,7 +55,6 @@ const Wrapper = styled.div`
     position: absolute;
     bottom: 0;
     left: 100px;
-    z-index: -1;
   }
 `;
 

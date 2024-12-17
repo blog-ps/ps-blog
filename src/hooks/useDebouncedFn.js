@@ -1,14 +1,23 @@
-import { useRef } from 'react';
+import { useRef, useCallback, useEffect } from 'react';
 
 const useDebouncedFn = (fn, ms = 500) => {
-  let timeoutRef = useRef(null);
+  const timeoutRef = useRef(null);
 
-  const debouncedFn = (...args) => {
-    clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      fn.apply(this, args);
-    }, ms);
-  };
+  const debouncedFn = useCallback(
+    (...args) => {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        fn(...args);
+      }, ms);
+    },
+    [fn, ms]
+  );
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return debouncedFn;
 };
