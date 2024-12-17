@@ -1,5 +1,5 @@
 import lightgirl from '@/assets/png/light.png';
-import suqares from '@/assets/svg/squares.svg';
+import suqares from '@/assets/svg/cover/squares.svg';
 import Piolet from '@/components/decorate/piolet';
 import Sphere from '@/components/decorate/sphere';
 import Wave from '@/components/decorate/wave';

@@ -7,28 +7,24 @@ const useScrollPosition = (
   customHandleScroll = () => {},
   item = window
 ) => {
-  const scrollY = useRef(() => {
-    const pageScrollY = window.localStorage.getItem(
-      `${location}-${item}-scroll-y`
-    );
-    return pageScrollY ? parseInt(pageScrollY) : 0;
-  });
+  let pageScrollY = window.localStorage.getItem(`${location}-${item}-scroll-y`);
+  if (!pageScrollY) pageScrollY = 0;
+  const scrollY = useRef(pageScrollY);
   const handleScroll = useCallback(() => {
     customHandleScroll(scrollY.current, item.scrollY);
     scrollY.current = item.scrollY;
-  }, [customHandleScroll]);
+  }, [customHandleScroll, item.scrollY]);
   useEffect(() => {
-    item.addEventListener('scroll', handleScroll);
-
     item.scrollTo(0, scrollY.current);
+    item.addEventListener('scroll', handleScroll);
     return () => {
       item.removeEventListener('scroll', handleScroll);
       window.localStorage.setItem(
         `${location}-${item}-scroll-y`,
-        window.scrollY
+        scrollY.current
       );
     };
-  }, [handleScroll, location, item]);
+  }, []);
   return scrollY;
 };
 export default useScrollPosition;

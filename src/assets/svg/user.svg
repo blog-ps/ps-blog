@@ -1,7 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-  <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-    <path d="M12 13a3 3 0 1 0 0-6a3 3 0 0 0 0 6" />
-    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9-9 9s-9-1.8-9-9s1.8-9 9-9" />
-    <path d="M6 20.05V20a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v.05" />
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none">
+  <path fill-rule="evenodd" clip-rule="evenodd"
+    d="M14.9999 9C14.9999 11.2091 13.209 13 10.9999 13C8.79074 13 6.99988 11.2091 6.99988 9C6.99988 6.79086 8.79074 5 10.9999 5C13.209 5 14.9999 6.79086 14.9999 9ZM10.9999 13C14.2799 13 17.0899 14.97 18.3299 17.79C16.4999 19.76 13.8999 21 10.9999 21C8.09992 21 5.49992 19.76 3.66992 17.79C4.90992 14.97 7.71992 13 10.9999 13Z"
+    fill="#ACACC3" />
+  <path
+    d="M11 21C16.5228 21 21 16.5228 21 11C21 5.47715 16.5228 1 11 1C5.47715 1 1 5.47715 1 11C1 16.5228 5.47715 21 11 21Z"
+    stroke="white" stroke-opacity="0.6" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"
+    stroke-linejoin="round" />
 </svg>

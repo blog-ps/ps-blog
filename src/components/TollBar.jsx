@@ -1,8 +1,8 @@
-import blog from '@/assets/svg/blog.svg';
-import home from '@/assets/svg/home.svg';
-import porject from '@/assets/svg/project.svg';
-import user from '@/assets/svg/user.svg';
-import user_unlogin from '@/assets/svg/user-unlogin.svg';
+import blog from '@/assets/svg/logo/blog.svg';
+import home from '@/assets/svg/logo/home.svg';
+import porject from '@/assets/svg/logo/project.svg';
+import user from '@/assets/svg/logo/user.svg';
+import user_unlogin from '@/assets/svg/logo/user-unlogin.svg';
 import { Dock, DockIcon } from '@/components/ui/dock';
 import {
   Tooltip,

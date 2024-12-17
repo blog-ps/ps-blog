@@ -1,5 +1,5 @@
-import emailIcon from '@/assets/svg/email.svg';
-import passwordIcon from '@/assets/svg/password.svg';
+import emailIcon from '@/assets/svg/logo/email.svg';
+import passwordIcon from '@/assets/svg/logo/password.svg';
 import InputWithIcon from '@/components/InputWithIcon';
 import { Toggle } from '@/components/ui/toggle';
 import { toast } from '@/hooks/use-toast';
@@ -9,6 +9,7 @@ import { Loader2, Mail } from 'lucide-react';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { Inputs, MyButton } from './SignUp.styled';
+import useDebouncedFn from '@/hooks/useDebouncedFn';
 
 const useUserInfo = () => {
   const [userInfo, setUserInfo] = useState({ email: '', password: '' });
@@ -24,7 +25,10 @@ const Login = () => {
   const { cooldown, status, STATUS, getCaptcha } = useSetOtp('login-cooldown');
   const { signinWithOtp, signinWithPassword } = useUserStore();
 
-  const handleSubmit = async (e) => {
+  const signinWithOtpDelay = useDebouncedFn(signinWithOtp, 500);
+  const signinWithPasswordDelay = useDebouncedFn(signinWithPassword, 500);
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!userInfo.email || !userInfo.password) {
       toast({ description: '请填写完整信息', variant: 'destructive' });
@@ -32,12 +36,12 @@ const Login = () => {
     }
 
     if (loginType === 'otp') {
-      await signinWithOtp({
+      signinWithOtpDelay({
         email: userInfo.email,
         code: userInfo.password,
       });
     } else if (loginType === 'password') {
-      await signinWithPassword({
+      signinWithPasswordDelay({
         email: userInfo.email,
         password: userInfo.password,
       });
@@ -55,7 +59,7 @@ const Login = () => {
         type="email"
         placeholder="请输入邮箱"
         value={userInfo.email}
-        onChange={(v) => updateUserInfo('email', v)}
+        onChange={(e) => updateUserInfo('email', e.target.value)}
         src={emailIcon}
         alt="email"
       />
@@ -64,7 +68,7 @@ const Login = () => {
         type="password"
         placeholder={`请输入${loginType === 'otp' ? '验证码' : '密码'}`}
         value={userInfo.password}
-        onChange={(v) => updateUserInfo('password', v)}
+        onChange={(e) => updateUserInfo('password', e.target.value)}
         src={passwordIcon}
         alt="password"
       />

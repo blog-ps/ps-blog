@@ -1,19 +1,14 @@
-import useUserStore from '@/store/user';
 import styled, { keyframes } from 'styled-components';
+import Form from './Form';
+import Particles from '@/components/ui/particles';
 
 const Dashboard = () => {
-  const { LogOut } = useUserStore();
-
   return (
     <Wrapper>
       <Content>
-        <Main>
-          <p>Edit Profile</p>
-          <h1>Manage your DesignCode profile and account</h1>
-
-          <Avatar></Avatar>
-        </Main>
+        <Form />
       </Content>
+      <MyParticles quantity={150} ease={80} refresh />
     </Wrapper>
   );
 };
@@ -30,18 +25,21 @@ const showUp = keyframes`
     opacity: 1;
   }
 `;
-
 const Wrapper = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 1400px;
-  height: 820px;
+  width: 960px;
+  height: 600px;
 
   border-radius: 20px;
   border: 0.5px solid rgba(255, 255, 255, 0.3);
-  fill: #292953;
+  background: linear-gradient(
+    180deg,
+    rgba(24, 32, 79, 0.4) 0%,
+    rgba(24, 32, 79, 0.25) 100%
+  );
   stroke-width: 0.5px;
   stroke: rgba(255, 255, 255, 0.2);
   filter: drop-shadow(0px 50px 100px rgba(31, 31, 71, 0.3));
@@ -52,34 +50,16 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.section`
-  padding-top: 30px;
-  padding-left: 30px;
+  padding: 30px;
+
+  display: grid;
+  grid-template-columns: repeat(2, auto);
 `;
 
-const Main = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-  gap: 20px;
-
-  p {
-    color: #fff;
-    font-family: 'SF Pro Text';
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 130%;
-    text-transform: uppercase;
-  }
-
-  h1 {
-    color: rgba(255, 255, 255, 0.7);
-    font-family: 'SF Pro Text';
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 130%;
-  }
+const MyParticles = styled(Particles)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 `;
-
-const Avatar = styled.div``;

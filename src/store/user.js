@@ -1,6 +1,7 @@
 import {
   getCaptchaCode,
   register,
+  saveUserSettings,
   signinWithOtp,
   signinWithPassword,
 } from '@/api/user';
@@ -8,70 +9,89 @@ import { toast } from '@/hooks/use-toast';
 import { create } from 'zustand';
 
 const userInfoInStorage = JSON.parse(localStorage.getItem('userInfo'));
+const TYPE = {
+  WITH_TOKEN: 1,
+  WITHOUT_TOKEN: 0,
+};
 
 const useUserStore = create((set) => {
-  function handleResponse(res, text, cb = () => {}) {
-    if (res.status !== 200) {
-      toast({
-        title: `${text}失败`,
-        description: `状态码: ${res.status}`,
-        variant: 'destructive',
-      });
-      return null;
-    }
+  const handleFailure = (text, message) => {
+    toast({
+      title: `${text}失败`,
+      description: message,
+      variant: 'destructive',
+    });
+  };
 
-    const { data } = res;
-    if (!data.success) {
-      toast({
-        title: `${text}失败`,
-        description: data.errorMsg,
-        variant: 'destructive',
-      });
-      return null;
-    }
-
-    if (text === '登录') {
+  const handleSuccess = (text, data, type = 0, cb) => {
+    if (type === TYPE.WITH_TOKEN) {
       set({ user: data.data });
       localStorage.setItem('token', data.data.token);
       localStorage.setItem('userInfo', JSON.stringify(data.data));
     }
-
     toast({ description: `${text}成功` });
-    cb();
-  }
+    cb(data);
+  };
+
+  const handleResponse = (
+    res,
+    text,
+    type = TYPE.WITHOUT_TOKEN,
+    cb = () => {}
+  ) => {
+    if (res.status !== 200) {
+      handleFailure(text, `状态码: ${res.status}`);
+      set({ user: userInfoInStorage });
+      return;
+    }
+
+    const { data } = res;
+    if (!data.success) {
+      handleFailure(text, data.errorMsg);
+      set({ user: userInfoInStorage });
+      return;
+    }
+
+    handleSuccess(text, data, type, cb);
+  };
+
+  const performSignIn = async (userInfo, method) => {
+    const res = await method(userInfo);
+    handleResponse(res, '登录', TYPE.WITH_TOKEN, () => {
+      window.location.reload();
+    });
+  };
 
   return {
     user: userInfoInStorage || null,
     setUser: (config) =>
-      set((state) => ({ user: { ...state.user, ...config } })),
+      set((state) => {
+        const newState = { user: { ...state.user, ...config } };
+        localStorage.setItem('userInfo', JSON.stringify(newState.user));
+        return newState;
+      }),
     LogOut: () => {
       set({ user: null });
       localStorage.removeItem('userInfo');
       localStorage.removeItem('token');
       window.location.reload();
     },
-
     fetchCaptchaCode: async (email) => {
       return await getCaptchaCode(email);
     },
-
     register: async (userInfo, cb) => {
       const res = await register(userInfo);
-      handleResponse(res, '注册', cb);
+      handleResponse(res, '注册', null, cb);
     },
-
     signinWithOtp: async (userInfo) => {
-      const res = await signinWithOtp(userInfo);
-      handleResponse(res, '登录', () => {
-        window.location.reload();
-      });
+      await performSignIn(userInfo, signinWithOtp);
     },
-
     signinWithPassword: async (userInfo) => {
-      const res = await signinWithPassword(userInfo);
-      handleResponse(res, '登录', () => {
-        window.location.reload();
-      });
+      await performSignIn(userInfo, signinWithPassword);
+    },
+    updateUserSettings: async (formData) => {
+      const res = await saveUserSettings(formData);
+      handleResponse(res, '更新用户信息', TYPE.WITH_TOKEN);
     },
   };
 });
