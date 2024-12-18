@@ -1,4 +1,14 @@
-import { Blog, Home, Project, Register, NotFound } from './pages';
+import {
+  Home,
+  Blog,
+  Program,
+  TodoList,
+  MyBlog,
+  PhotoLibrary,
+  Project,
+  Register,
+  NotFound,
+} from './pages';
 
 export default [
   {
@@ -8,6 +18,24 @@ export default [
   {
     path: '/blog',
     element: <Blog />,
+    children: [
+      {
+        path: '/blog/',
+        element: <MyBlog />,
+      },
+      {
+        path: '/blog/photoLibrary',
+        element: <PhotoLibrary />,
+      },
+      {
+        path: '/blog/todoList',
+        element: <TodoList />,
+      },
+      {
+        path: '/blog/program',
+        element: <Program />,
+      },
+    ],
   },
   {
     path: '/project',

@@ -1,9 +1,9 @@
 import { useThemeStyle } from '@/provider/theme-provider';
 import styled from 'styled-components';
-const SmartButton = ({ children, ...props }) => {
+const SmartButton = ({ children, onClick, ...props }) => {
   const theme = useThemeStyle();
   return (
-    <SmartButtonWapper $theme={theme} {...props}>
+    <SmartButtonWapper onClick={onClick} $theme={theme} {...props}>
       <span>{children}</span>
     </SmartButtonWapper>
   );
@@ -11,11 +11,11 @@ const SmartButton = ({ children, ...props }) => {
 const SmartButtonWapper = styled.button`
   position: relative;
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 20px;
   color: white;
   background-color: ${({ $theme }) => $theme.bottomColor1};
   border: none;
-  border-radius: 5px;
+  border-radius: 35px;
   cursor: pointer;
   overflow: hidden; /* 隐藏溢出部分 */
   transition: color 0.3s ease; /* 文本颜色变化的平滑过渡 */
@@ -34,7 +34,7 @@ const SmartButtonWapper = styled.button`
     background-color: ${({ $theme }) => $theme.bottomColor2}; /* 蓝色背景 */
     border-radius: 50%; /* 圆形背景 */
     transform: translate(-50%, -50%) scale(0); /* 初始缩放为0 */
-    transition: transform 0.6s ease; /* 平滑缩放过渡 */
+    transition: transform 0.8s ease; /* 平滑缩放过渡 */
     z-index: 0; /* 放在文字后面 */
   }
 

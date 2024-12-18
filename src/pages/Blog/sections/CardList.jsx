@@ -10,7 +10,9 @@ import {
 import { SmartButton } from '@/components/ui/smartButton';
 import styled from 'styled-components';
 import BlurFade from '@/components/ui/blur-fade';
-const CardList = (theme) => {
+import { useThemeMode } from '@/provider/theme-provider';
+const CardList = () => {
+  const theme = useThemeMode();
   return (
     <Wrapper id="cardWrapper">
       <BlurFadeLeft delay={0.1} inView key={theme.model}>
