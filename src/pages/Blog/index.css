@@ -5,6 +5,8 @@
   color: #333; /* 调整文本颜色 */
   font-weight: bold; /* 加粗字体 */
   transition: color 0.3s ease; /* 文本颜色变化的过渡效果 */
+  display: block;
+  font-size: 2vh;
 }
 
 .hover-effect::after {
@@ -13,13 +15,13 @@
   left: 50%;
   bottom: -4px; /* 调整线的位置 */
   width: 0;
-  height: 2px; /* 调整线的粗细 */
-  background-color: #a7d8e8; /* 调整线的颜色 */
+  height: 0.5vh; /* 调整线的粗细 */
+  background-color: #65cff2; /* 调整线的颜色 */
   transition: width 0.3s ease, left 0.3s ease;
 }
 
 .hover-effect:hover {
-  color: #ffb6c1; /* 悬停时改变文本颜色 */
+  color: #e04e64; /* 悬停时改变文本颜色 */
 }
 
 .hover-effect:hover::after {
@@ -28,11 +30,13 @@
 }
 /* 基本样式 */
 .my-div {
+  white-space: nowrap;
   padding: 10px 8vw;
   display: flex;
   justify-content: space-between; /* 可选：如果希望按钮之间有间隔 */
   align-items: center; /* 垂直居中 */
 }
+
 /* 出现时的动画 */
 .slide-in {
   animation: slideInDown 0.3s forwards; /* 0.5秒时间可以根据需要调整 */
@@ -49,14 +53,14 @@
     opacity: 1;
   }
   to {
-    transform: translateY(-100%);
+    transform: translateY(-200%);
     opacity: 1;
   }
 }
 
 @keyframes slideInDown {
   from {
-    transform: translateY(-100%);
+    transform: translateY(-200%);
     opacity: 1;
   }
   to {

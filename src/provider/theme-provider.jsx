@@ -14,8 +14,8 @@ const theme = {
     themeColor2: '#c6a5b3',
     bottomColor1: '#57d0c6',
     bottomColor2: '#70A2E1',
-    navigationColor: '#ffffff',
-    navigationBorderColor: '#5438e4',
+    navigationColor: '#f6d8d8',
+    navigationBorderColor: '#fcb6b6',
     navigationHoverColor: '#003d80',
     background:
       'linear-gradient(180deg, #4069E4 0%, rgba(255, 255, 255, 0.00) 100%)',
