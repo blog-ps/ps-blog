@@ -49,12 +49,13 @@ const BlurFadeLeft = styled(BlurFade)`
   left: 0;
 `;
 const Container = styled.div`
+  padding: 20vw;
   display: flex;
   flex-wrap: wrap; /* 允许换行 */
-  gap: 20px; /* 设置间隔 */
+  gap: 1vw; /* 设置间隔 */
 `;
 const CardContainer = styled.div`
-  width: 30vw;
+  width: 25vw;
   height: 40vh;
 `;
 export default CardList;
