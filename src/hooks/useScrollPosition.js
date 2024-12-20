@@ -34,6 +34,8 @@ const useScrollPosition = (
       scrollY.current = parseInt(storedScrollY, 10);
     }
     item.scrollTo(0, scrollY.current);
+    console.log('scrollTo', scrollY.current);
+
     item.addEventListener('scroll', handleScroll);
 
     return () => {

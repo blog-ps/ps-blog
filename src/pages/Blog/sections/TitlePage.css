@@ -1,0 +1,13 @@
+video {
+  position: fixed; /* 绝对定位覆盖整个父容器 */
+  top: 0;
+  left: 0;
+  width: 100%; /* 视频宽度100% */
+  height: 100vh; /* 视频高度100% */
+  object-fit: cover; /* 保持视频比例并覆盖 */
+  z-index: 0;
+}
+.TitleImg {
+  position: fixed;
+  z-index: 1;
+}
