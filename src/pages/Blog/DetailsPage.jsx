@@ -1,7 +1,8 @@
 import { useThemeMode, useThemeStyle } from '@/provider/theme-provider';
 import styled from 'styled-components';
 import sese from '@/assets/img/myblog/sese.png';
-
+import ReactMarkdown from 'react-markdown';
+import MDEditor from '@uiw/react-md-editor';
 const DetailsPage = () => {
   const theme = useThemeStyle();
   const mode = useThemeMode();
@@ -17,6 +18,8 @@ const DetailsPage = () => {
         <Inner $theme={theme}>
           <Title>标题</Title>
           <Abstract>简介</Abstract>
+          {/* <MDEditor.Markdown source={markdown} style={{ whiteSpace: 'pre-wrap' }} /> */}
+          {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown> */}
           <Context>{Array(40).fill('我是简介').join(' ')}</Context>
         </Inner>
       </ContextWrapper>

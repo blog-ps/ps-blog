@@ -7,7 +7,6 @@ import Loading from './components/Loading';
 import TollBar from './components/TollBar';
 import { Toaster } from './components/ui/toaster';
 import { useThemeStyle } from './provider/theme-provider';
-
 // TODO 样式
 const ErrorFallback = ({ error, resetErrorBoundary }) => {
   return (
