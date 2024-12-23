@@ -41,11 +41,7 @@ const Navigation = ({ children }) => {
   const navigate = useNavigate();
   const handleScroll = useCallback(
     (oldScroll, newScroll) => {
-      console.log('oldScroll', oldScroll);
-      console.log('newScroll', newScroll);
       if (oldScroll > newScroll && visible === true) {
-        console.log('set Visable false');
-
         setVisible(false);
       } else if (oldScroll <= newScroll && visible === false) {
         setVisible(true);
