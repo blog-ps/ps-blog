@@ -12,63 +12,47 @@ import styled from 'styled-components';
 import BlurFade from '@/components/ui/blur-fade';
 import { useThemeMode } from '@/provider/theme-provider';
 import sese from '@/assets/img/myblog/sese.png';
-const CardList = () => {
+const CardList = ({ blogs = [] }) => {
   const theme = useThemeMode();
   return (
     <Wrapper id="cardWrapper">
       <BlurFadeLeft delay={0.1} inView key={theme.model}>
         <Container>
           <TitleContainer>
-            {Array(21)
-              .fill()
-              .slice(0, 1)
-              .map((item, index) => (
-                <TitleCard key={index}>
-                  <SmartCard>
-                    <SmartCardImg>
-                      <img src={sese} alt="" />
-                    </SmartCardImg>
-                    <SmartCardItems>
-                      <SmartCardTitle>我是标题</SmartCardTitle>
-                      <SmartAbstract>我是简介</SmartAbstract>
-                      <SmartCardItem>我是列表1</SmartCardItem>
-                      <SmartCardItem>我是列表2</SmartCardItem>
-                    </SmartCardItems>
-                    <SmartCardFooter>我是页脚</SmartCardFooter>
-                  </SmartCard>
-                </TitleCard>
-              ))}
-
-            <TitleCard>
-              <SmartCard>
-                <SmartCardImg>图片</SmartCardImg>
-                <SmartCardItems>
-                  <SmartCardTitle>我是标题</SmartCardTitle>
-                  <SmartAbstract>我是简介</SmartAbstract>
-                  <SmartCardItem>我是列表1</SmartCardItem>
-                  <SmartCardItem>我是列表2</SmartCardItem>
-                </SmartCardItems>
-                <SmartCardFooter>我是页脚</SmartCardFooter>
-              </SmartCard>
-            </TitleCard>
+            {blogs.slice(0, 2).map((item, index) => (
+              <TitleCard key={index}>
+                <SmartCard>
+                  <SmartCardImg>
+                    <img src={sese} alt="" />
+                  </SmartCardImg>
+                  <SmartCardItems>
+                    <SmartCardTitle>{item.title || ''}</SmartCardTitle>
+                    <SmartAbstract>{item.abstract || ''}</SmartAbstract>
+                    {/* <SmartCardItem>{item.list[0] || ''}</SmartCardItem>
+                    <SmartCardItem>{item.list[1] || ''}</SmartCardItem> */}
+                  </SmartCardItems>
+                  <SmartCardFooter>{item.publishTime || ''}</SmartCardFooter>
+                </SmartCard>
+              </TitleCard>
+            ))}
           </TitleContainer>
 
-          {Array(21)
-            .fill()
-            .map((item, index) => (
-              <CardContainer key={index}>
-                <SmartCard>
-                  <SmartCardImg>图片</SmartCardImg>
-                  <SmartCardItems>
-                    <SmartCardTitle>我是标题</SmartCardTitle>
-                    <SmartAbstract>我是简介</SmartAbstract>
-                    <SmartCardItem>我是列表1</SmartCardItem>
-                    <SmartCardItem>我是列表2</SmartCardItem>
-                  </SmartCardItems>
-                  <SmartCardFooter>我是页脚</SmartCardFooter>
-                </SmartCard>
-              </CardContainer>
-            ))}
+          {blogs.slice(2).map((item, index) => (
+            <CardContainer key={index}>
+              <SmartCard>
+                <SmartCardImg>
+                  <img src={sese} alt="" />
+                </SmartCardImg>
+                <SmartCardItems>
+                  <SmartCardTitle>{item.title || ''}</SmartCardTitle>
+                  <SmartAbstract>{item.abstract || ''}</SmartAbstract>
+                  {/* <SmartCardItem>{item.list[0] || ''}</SmartCardItem>
+                  <SmartCardItem>{item.list[1] || ''}</SmartCardItem> */}
+                </SmartCardItems>
+                <SmartCardFooter>{item.publishTime || ''}</SmartCardFooter>
+              </SmartCard>
+            </CardContainer>
+          ))}
         </Container>
       </BlurFadeLeft>
     </Wrapper>
@@ -83,12 +67,6 @@ const TitleContainer = styled.div`
 const TitleCard = styled.div`
   width: 35vw;
   height: 60vh;
-  img {
-    height: 30vh;
-    border-radius: 20px;
-    width: 35vw;
-    object-fit: cover;
-  }
 `;
 const Wrapper = styled.div`
   width: 100%;

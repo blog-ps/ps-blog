@@ -1,5 +1,6 @@
 import {
   getCaptchaCode,
+  getUserBlogs,
   register,
   saveUserSettings,
   signinWithOtp,
@@ -92,6 +93,47 @@ const useUserStore = create((set) => {
     updateUserSettings: async (formData) => {
       const res = await saveUserSettings(formData);
       handleResponse(res, '更新用户信息', TYPE.WITH_TOKEN);
+    },
+    getUserBlogs: () => {
+      return [
+        {
+          value: '1111**Hello world!!!**',
+          title: '我是标题',
+          abstract: '我是简介',
+          tag: '体育',
+          type: '博客',
+          // 以下仅展示，不修改
+          author: '我是作者',
+          creatTime: '12.241',
+          updateTime: '12.242',
+          publishTime: '12.243',
+        },
+        {
+          value: '2222**Hello world!!!**',
+          title: '我是标题',
+          abstract: '我是简介',
+          tag: '体育',
+          type: '博客',
+          // 以下仅展示，不修改
+          author: '我是作者',
+          creatTime: '12.241',
+          updateTime: '12.242',
+          publishTime: '12.243',
+        },
+        {
+          value: '3333**Hello world!!!**',
+          title: '我是标题',
+          abstract: '我是简介',
+          tag: '体育',
+          type: '博客',
+          // 以下仅展示，不修改
+          author: '我是作者',
+          creatTime: '12.241',
+          updateTime: '12.242',
+          publishTime: '12.243',
+        },
+      ];
+      // return  await getUserBlogs();
     },
   };
 });

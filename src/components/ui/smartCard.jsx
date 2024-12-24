@@ -13,7 +13,7 @@ const SmartCardWrapper = styled.div`
   align-items: center;
   gap: 20px;
   margin: 10px;
-  padding: 20px;
+  padding: 10px;
   border-radius: 15px;
 
   border: 1px solid var(--Light-Mode-Container-Border, rgba(255, 255, 255, 0.1));
@@ -32,9 +32,15 @@ const SmartCardImg = ({ children }) => {
   );
 };
 const SmartCardImgWrapper = styled.div`
-  flex: 8;
+  flex: 15;
+  overflow: hidden;
+  border-radius: 20px;
 `;
-const SmartCardImgInner = styled.div``;
+const SmartCardImgInner = styled.div`
+  img {
+    object-fit: cover;
+  }
+`;
 const SmartCardItems = ({ children }) => {
   return (
     <SmartCardItemsWrapper id="itemsWrapper">{children}</SmartCardItemsWrapper>

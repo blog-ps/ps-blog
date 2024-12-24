@@ -1,12 +1,11 @@
 import { useThemeMode } from '@/provider/theme-provider';
 import styled from 'styled-components';
-import CreatePage from './CreatePage';
+import EditPage from './EditPage';
 const TodoList = () => {
   const { model } = useThemeMode();
   return (
     <Wrapper>
-      {' '}
-      <CreatePage></CreatePage>{' '}
+      <EditPage></EditPage>
     </Wrapper>
   );
 };

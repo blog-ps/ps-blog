@@ -2,14 +2,17 @@ import { useThemeMode, useThemeStyle } from '@/provider/theme-provider';
 import styled from 'styled-components';
 import CardList from './sections/CardList';
 import TitlePage from './sections/TitlePage';
+import useUserStore from '@/store/user';
 const MyBlog = () => {
+  const { getUserBlogs } = useUserStore();
+  const blogs = getUserBlogs();
   const theme = useThemeStyle();
   const mode = useThemeMode();
   return (
     <Wrapper>
       <TitlePage></TitlePage>
       <CardWrapper $theme={theme} $mode={mode} id="MyblogWrapper">
-        <CardList></CardList>
+        <CardList blogs={blogs}></CardList>
       </CardWrapper>
     </Wrapper>
   );

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import instance from './requrst';
+import instance from './request';
 
 async function apiRequest(method, url, data = null, useInstance = false) {
   try {
@@ -10,6 +10,9 @@ async function apiRequest(method, url, data = null, useInstance = false) {
   } catch (error) {
     return error;
   }
+}
+export function getUserBlogs() {
+  return apiRequest('get', '/user/front/getBlogs', null, true);
 }
 
 export function getCaptchaCode(email) {

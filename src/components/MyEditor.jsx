@@ -1,18 +1,20 @@
 import styled from 'styled-components';
-import { useState } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { useThemeMode } from '@/provider/theme-provider';
-import './editor.css';
+import './MyEditor.css';
 // import 'md-editor-rt/lib/style.css';
 
-const MyEditor = ({ children }) => {
-  const [value, setValue] = useState('**Hello world!!!**');
+const MyEditor = ({ value = '', dispatch }) => {
+  // const [bolg, setValue] = useState('**Hello world!!!**');
+
   const theme = useThemeMode;
   return (
     <Wrapper>
       <MDEditor
         value={value}
-        onChange={setValue}
+        onChange={(e) => {
+          dispatch({ type: 'SET_VALUE', payload: e });
+        }}
         theme={theme.model}
         className="MDEditor"
       ></MDEditor>
@@ -20,9 +22,6 @@ const MyEditor = ({ children }) => {
   );
 };
 const Wrapper = styled.div`
-  * {
-    height: 100%;
-  }
   width: 100%;
   height: 100%;
 `;
