@@ -112,13 +112,13 @@ const Waves = styled.section`
       rgba(0, 0, 0, 0.69) 0%,
       rgba(0, 0, 0, 0) 54.89%
     );
-    bottom: 40px;
+    bottom: -20px;
   }
 
   .wave4 {
     ${waveStyles}
     fill: linear-gradient(180deg, #bcc6f6 0%, #f2f6ff 100%);
-    bottom: 0;
+    bottom: -10px;
   }
 `;
 

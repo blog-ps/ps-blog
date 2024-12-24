@@ -134,18 +134,4 @@ const useThemeStyle = () => {
   return theme[model] || theme.light;
 };
 
-const useRevertIcon = () => {
-  const [revert, setRevert] = useState(false);
-
-  useEffect(() => {
-    setRevert(true);
-
-    return () => {
-      setRevert(false);
-    };
-  }, []);
-
-  return revert;
-};
-
-export { ThemesProvider, useThemeMode, useThemeStyle, useRevertIcon };
+export { ThemesProvider, useThemeMode, useThemeStyle };
